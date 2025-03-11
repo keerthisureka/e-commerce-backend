@@ -9,6 +9,7 @@ import com.example.products.repository.ProductMerchantRepository;
 import com.example.products.repository.ProductRepository;
 import com.example.products.services.KafkaProducerService;
 import com.example.products.services.ProductService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private KafkaProducerService kafkaProducerService;
+
+
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public ApiResponse<Boolean> addProduct(ProductRequestDto productRequestDto) {
@@ -117,7 +121,13 @@ public class ProductServiceImpl implements ProductService {
             productKafkaProduceDto.setProductMerchantStock(productMerchantRepository.findByProductIdAndMerchantId(product.getId(),productMerchantResponseDto.getMerchantId()).getStock());
             productKafkaProduceDto.setMerchantRating(merchantRepository.findById(productMerchantResponseDto.getMerchantId()).get().getRatings());
             productKafkaProduceDto.setProductMerchantRating(productMerchantRepository.findByProductIdAndMerchantId(product.getId(),productMerchantResponseDto.getMerchantId()).getRatings());
-            kafkaProducerService.sendProductResponse("product-topic",productKafkaProduceDto);
+
+            try {
+                kafkaProducerService.sendProductResponse("product-topic", objectMapper.writeValueAsString(productKafkaProduceDto));
+                ;
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 

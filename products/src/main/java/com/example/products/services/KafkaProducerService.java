@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaProducerService {
 
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public KafkaProducerService(KafkaTemplate<String, Object> kafkaTemplate) {
+    public KafkaProducerService(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendProductResponse(String topic, ProductKafkaProduceDto productKafkaProduceDto) {
+    public void sendProductResponse(String topic, String productKafkaProduceDto) {
         kafkaTemplate.send(topic, productKafkaProduceDto);
     }
 }
