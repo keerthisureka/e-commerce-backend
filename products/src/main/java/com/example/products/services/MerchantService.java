@@ -5,4 +5,6 @@ import com.example.products.dto.MerchantRequestDto;
 
 public interface MerchantService {
     public ApiResponse<Boolean> addMerchant(MerchantRequestDto merchantRequestDto);
+
+    public ApiResponse<Boolean> updateMerchantStock(String merchantId, Long quantity);
 }

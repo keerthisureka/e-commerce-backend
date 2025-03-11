@@ -7,8 +7,4 @@ public class MerchantRequestDto {
     private String name;
 
     private Double ratings;
-
-    private Long totalProductsListedByMerchant;
-
-    private Long totalProductsSoldByMerchant;
 }

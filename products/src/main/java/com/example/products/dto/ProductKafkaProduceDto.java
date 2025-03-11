@@ -11,6 +11,10 @@ public class ProductKafkaProduceDto {
     private String productUsp;
     private String merchantId;
     private String merchantName;
-    private Double merchantPrice;
-    private Double merchantScore;
+    private Double productMerchantPrice;
+    private Long totalProductsOfferedByMerchant;
+    private Long totalProductsSoldByMerchant;
+    private Long productMerchantStock;
+    private Double merchantRating;
+    private Double productMerchantRating;
 }

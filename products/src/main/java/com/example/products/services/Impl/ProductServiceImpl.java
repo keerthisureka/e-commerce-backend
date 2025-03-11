@@ -41,7 +41,6 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
         List<ProductMerchantRequestDto> productMerchantRequestDtoList = productRequestDto.getProductMerchantRequestDtoList();
         List<ProductMerchantResponseDto> productMerchantResponseDtoList = new ArrayList<>();
-
         for(ProductMerchantRequestDto productMerchantRequestDto: productMerchantRequestDtoList) {
             ProductMerchant productMerchant = new ProductMerchant();
             productMerchant.setMerchantId(productMerchantRequestDto.getMerchantId());
@@ -50,21 +49,14 @@ public class ProductServiceImpl implements ProductService {
             productMerchant.setRatings(productMerchantRequestDto.getRatings());
             productMerchant.setProductId(product.getId());
 
+            Merchant merchant = merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get();
+            merchant.setTotalProductsListedByMerchant(merchant.getTotalProductsListedByMerchant() + productMerchantRequestDto.getStock());
+            merchantRepository.save(merchant);
+
             ProductMerchantResponseDto productMerchantResponseDto = new ProductMerchantResponseDto();
             productMerchantResponseDto.setMerchantId(productMerchantRequestDto.getMerchantId());
             productMerchantResponseDto.setMerchantName(merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get().getName());
             productMerchantResponseDto.setPrice(productMerchantRequestDto.getPrice());
-
-
-            double salesToListingRatio = (double) merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get().getTotalProductsSoldByMerchant() / (merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get().getTotalProductsListedByMerchant() + 1);
-            double stockAvailability = (double)(productMerchantRequestDto.getStock() / (merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get().getTotalProductsSoldByMerchant() + 1 )) ;
-            double merchantRating = productMerchantRequestDto.getRatings() / 5;
-            double customerRating = merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get().getRatings() / 5;
-            double pricing = productMerchantRequestDto.getPrice();
-
-            double score =  (0.3 * merchantRating + 0.3 * customerRating + 0.2 * salesToListingRatio + 0.1 * stockAvailability) / pricing + 0.000001;
-            productMerchantResponseDto.setScore(score);
-
             productMerchantResponseDtoList.add(productMerchantResponseDto);
 
             productMerchantRepository.save(productMerchant);
@@ -119,8 +111,12 @@ public class ProductServiceImpl implements ProductService {
             productKafkaProduceDto.setProductUsp(product.getUsp());
             productKafkaProduceDto.setMerchantId(productMerchantResponseDto.getMerchantId());
             productKafkaProduceDto.setMerchantName(productMerchantResponseDto.getMerchantName());
-            productKafkaProduceDto.setMerchantPrice(productMerchantResponseDto.getPrice());
-            productKafkaProduceDto.setMerchantScore(productKafkaProduceDto.getMerchantScore());
+            productKafkaProduceDto.setProductMerchantPrice(productMerchantResponseDto.getPrice());
+            productKafkaProduceDto.setTotalProductsOfferedByMerchant(merchantRepository.findById(productMerchantResponseDto.getMerchantId()).get().getTotalProductsListedByMerchant());
+            productKafkaProduceDto.setTotalProductsSoldByMerchant(merchantRepository.findById(productMerchantResponseDto.getMerchantId()).get().getTotalProductsSoldByMerchant());
+            productKafkaProduceDto.setProductMerchantStock(productMerchantRepository.findByProductIdAndMerchantId(product.getId(),productMerchantResponseDto.getMerchantId()).getStock());
+            productKafkaProduceDto.setMerchantRating(merchantRepository.findById(productMerchantResponseDto.getMerchantId()).get().getRatings());
+            productKafkaProduceDto.setProductMerchantRating(productMerchantRepository.findByProductIdAndMerchantId(product.getId(),productMerchantResponseDto.getMerchantId()).getRatings());
             kafkaProducerService.sendProductResponse("product-topic",productKafkaProduceDto);
         }
     }
