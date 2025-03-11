@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService {
             double customerRating = merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get().getRatings() / 5;
             double pricing = productMerchantRequestDto.getPrice();
 
-            double score =  (0.3 * merchantRating + 0.3 * customerRating + 0.2 * salesToListingRatio + 0.1 * stockAvailability) * pricing;
+            double score =  (0.3 * merchantRating + 0.3 * customerRating + 0.2 * salesToListingRatio + 0.1 * stockAvailability) / pricing + 0.000001;
             productMerchantResponseDto.setScore(score);
 
             productMerchantResponseDtoList.add(productMerchantResponseDto);
@@ -71,7 +71,9 @@ public class ProductServiceImpl implements ProductService {
         }
         Collections.sort(productMerchantResponseDtoList, new ScoreComparator());
         product.setMerchantList(productMerchantResponseDtoList);
+
         publishToKafkaTopic(productRepository.save(product));
+
         return new ApiResponse<>(HttpStatus.CREATED," Product added", true);
     }
 
@@ -108,15 +110,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private void  publishToKafkaTopic(Product product) {
-        ProductResponseDto productResponseDto = new ProductResponseDto();
-        productResponseDto.setId(product.getId());
-        productResponseDto.setName(product.getName());
-        productResponseDto.setDescription(product.getDescription());
-        productResponseDto.setImageUrl(product.getImageUrl());
-        productResponseDto.setUsp(product.getUsp());
-        productResponseDto.setMerchantList(product.getMerchantList());
-
-        kafkaProducerService.sendProductResponse("product-topic",productResponseDto);
+        for(ProductMerchantResponseDto productMerchantResponseDto : product.getMerchantList()) {
+            ProductKafkaProduceDto productKafkaProduceDto = new ProductKafkaProduceDto();
+            productKafkaProduceDto.setProductId(product.getId());
+            productKafkaProduceDto.setProductName(product.getName());
+            productKafkaProduceDto.setProductImageUrl(product.getImageUrl());
+            productKafkaProduceDto.setProductDescription(product.getDescription());
+            productKafkaProduceDto.setProductUsp(product.getUsp());
+            productKafkaProduceDto.setMerchantId(productMerchantResponseDto.getMerchantId());
+            productKafkaProduceDto.setMerchantName(productMerchantResponseDto.getMerchantName());
+            productKafkaProduceDto.setMerchantPrice(productMerchantResponseDto.getPrice());
+            productKafkaProduceDto.setMerchantScore(productKafkaProduceDto.getMerchantScore());
+            kafkaProducerService.sendProductResponse("product-topic",productKafkaProduceDto);
+        }
     }
 
 }

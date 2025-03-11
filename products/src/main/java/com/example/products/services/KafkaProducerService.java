@@ -1,5 +1,6 @@
 package com.example.products.services;
 
+import com.example.products.dto.ProductKafkaProduceDto;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public class KafkaProducerService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendProductResponse(String topic, Object productResponseDTO) {
-        kafkaTemplate.send(topic, productResponseDTO);
+    public void sendProductResponse(String topic, ProductKafkaProduceDto productKafkaProduceDto) {
+        kafkaTemplate.send(topic, productKafkaProduceDto);
     }
 }
