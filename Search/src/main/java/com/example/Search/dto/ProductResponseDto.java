@@ -26,11 +26,23 @@ public class ProductResponseDto implements Serializable{
     @JsonProperty("merchantName")
     private String merchantName;
 
-    @JsonProperty("merchantPrice")
-    private Double merchantPrice;
+    @JsonProperty("productMerchantPrice")
+    private Double productMerchantPrice;
 
-    @JsonProperty("merchantScore")
-    private Double merchantScore;
+    @JsonProperty("totalProductsOfferedByMerchant")
+    private Long totalProductsOfferedByMerchant;
+
+    @JsonProperty("totalProductsSoldByMerchant")
+    private Long totalProductsSoldByMerchant;
+
+    @JsonProperty("productMerchantStock")
+    private Long productMerchantStock;
+
+    @JsonProperty("merchantRating")
+    private Double merchantRating;
+
+    @JsonProperty("productMerchantRating")
+    private Double productMerchantRating;
 
     public String getProductId() {
         return productId;
@@ -88,19 +100,51 @@ public class ProductResponseDto implements Serializable{
         this.merchantName = merchantName;
     }
 
-    public Double getMerchantPrice() {
-        return merchantPrice;
+    public Double getProductMerchantPrice() {
+        return productMerchantPrice;
     }
 
-    public void setMerchantPrice(Double merchantPrice) {
-        this.merchantPrice = merchantPrice;
+    public void setProductMerchantPrice(Double productMerchantPrice) {
+        this.productMerchantPrice = productMerchantPrice;
     }
 
-    public Double getMerchantScore() {
-        return merchantScore;
+    public Long getTotalProductsOfferedByMerchant() {
+        return totalProductsOfferedByMerchant;
     }
 
-    public void setMerchantScore(Double merchantScore) {
-        this.merchantScore = merchantScore;
+    public void setTotalProductsOfferedByMerchant(Long totalProductsOfferedByMerchant) {
+        this.totalProductsOfferedByMerchant = totalProductsOfferedByMerchant;
+    }
+
+    public Long getTotalProductsSoldByMerchant() {
+        return totalProductsSoldByMerchant;
+    }
+
+    public void setTotalProductsSoldByMerchant(Long totalProductsSoldByMerchant) {
+        this.totalProductsSoldByMerchant = totalProductsSoldByMerchant;
+    }
+
+    public Long getProductMerchantStock() {
+        return productMerchantStock;
+    }
+
+    public void setProductMerchantStock(Long productMerchantStock) {
+        this.productMerchantStock = productMerchantStock;
+    }
+
+    public Double getMerchantRating() {
+        return merchantRating;
+    }
+
+    public void setMerchantRating(Double merchantRating) {
+        this.merchantRating = merchantRating;
+    }
+
+    public Double getProductMerchantRating() {
+        return productMerchantRating;
+    }
+
+    public void setProductMerchantRating(Double productMerchantRating) {
+        this.productMerchantRating = productMerchantRating;
     }
 }

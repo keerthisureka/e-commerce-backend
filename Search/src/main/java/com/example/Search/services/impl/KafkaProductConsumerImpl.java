@@ -17,19 +17,26 @@ public class KafkaProductConsumerImpl implements KafkaProductConsumer {
     @KafkaListener(topics = "product-topic", groupId = "product-consumer-group")
     public void consume(ProductResponseDto productResponseDto) {
         try {
-            Product product = new Product();
-            product.setProductId(productResponseDto.getProductId());
-            product.setProductName(productResponseDto.getProductName());
-            product.setProductImageUrl(productResponseDto.getProductImageUrl());
-            product.setProductDescription(productResponseDto.getProductDescription());
-            product.setProductUsp(productResponseDto.getProductUsp());
-            product.setMerchantId(productResponseDto.getMerchantId());
-            product.setMerchantName(productResponseDto.getMerchantName());
-            product.setMerchantPrice(productResponseDto.getMerchantPrice());
-            product.setMerchantScore(productResponseDto.getMerchantScore());
+            Product existingProduct = productRepository.findByProductIdAndMerchantId(productResponseDto.getProductId(), productResponseDto.getMerchantId());
 
-            productRepository.save(product);
-            System.out.println("Product saved to Solr: " + product);
+            if (existingProduct == null) {
+                existingProduct = new Product();
+            }
+            existingProduct.setProductId(productResponseDto.getProductId());
+            existingProduct.setProductName(productResponseDto.getProductName());
+            existingProduct.setProductImageUrl(productResponseDto.getProductImageUrl());
+            existingProduct.setProductDescription(productResponseDto.getProductDescription());
+            existingProduct.setProductUsp(productResponseDto.getProductUsp());
+            existingProduct.setMerchantId(productResponseDto.getMerchantId());
+            existingProduct.setMerchantName(productResponseDto.getMerchantName());
+            existingProduct.setProductMerchantPrice(productResponseDto.getProductMerchantPrice());
+            existingProduct.setTotalProductsOfferedByMerchant(productResponseDto.getTotalProductsOfferedByMerchant());
+            existingProduct.setTotalProductsSoldByMerchant(productResponseDto.getTotalProductsSoldByMerchant());
+            existingProduct.setProductMerchantStock(productResponseDto.getProductMerchantStock());
+            existingProduct.setMerchantRating(productResponseDto.getMerchantRating());
+            existingProduct.setProductMerchantRating(productResponseDto.getProductMerchantRating());
+            productRepository.save(existingProduct);
+            System.out.println("Product saved to Solr: " + existingProduct);
         } catch (Exception e) {
             System.err.println("Error processing Kafka message: " + e.getMessage());
         }

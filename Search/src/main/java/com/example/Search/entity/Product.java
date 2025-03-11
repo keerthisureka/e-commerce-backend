@@ -7,6 +7,9 @@ import org.springframework.data.solr.core.mapping.SolrDocument;
 @SolrDocument(collection = "mycore")
 public class Product {
     @Id
+    @Field("id")
+    private String id;
+
     @Field("productId")
     private String productId;
 
@@ -28,11 +31,31 @@ public class Product {
     @Field("merchantName")
     private String merchantName;
 
-    @Field("merchantPrice")
-    private Double merchantPrice;
+    @Field("productMerchantPrice")
+    private Double productMerchantPrice;
 
-    @Field("merchantScore")
-    private Double merchantScore;
+    @Field("totalProductsOfferedByMerchant")
+    private Long totalProductsOfferedByMerchant;
+
+    @Field("totalProductsSoldByMerchant")
+    private Long totalProductsSoldByMerchant;
+
+    @Field("productMerchantStock")
+    private Long productMerchantStock;
+
+    @Field("merchantRating")
+    private Double merchantRating;
+
+    @Field("productMerchantRating")
+    private Double productMerchantRating;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getProductId() {
         return productId;
@@ -90,19 +113,51 @@ public class Product {
         this.merchantName = merchantName;
     }
 
-    public Double getMerchantPrice() {
-        return merchantPrice;
+    public Double getProductMerchantPrice() {
+        return productMerchantPrice;
     }
 
-    public void setMerchantPrice(Double merchantPrice) {
-        this.merchantPrice = merchantPrice;
+    public void setProductMerchantPrice(Double productMerchantPrice) {
+        this.productMerchantPrice = productMerchantPrice;
     }
 
-    public Double getMerchantScore() {
-        return merchantScore;
+    public Long getTotalProductsOfferedByMerchant() {
+        return totalProductsOfferedByMerchant;
     }
 
-    public void setMerchantScore(Double merchantScore) {
-        this.merchantScore = merchantScore;
+    public void setTotalProductsOfferedByMerchant(Long totalProductsOfferedByMerchant) {
+        this.totalProductsOfferedByMerchant = totalProductsOfferedByMerchant;
+    }
+
+    public Long getTotalProductsSoldByMerchant() {
+        return totalProductsSoldByMerchant;
+    }
+
+    public void setTotalProductsSoldByMerchant(Long totalProductsSoldByMerchant) {
+        this.totalProductsSoldByMerchant = totalProductsSoldByMerchant;
+    }
+
+    public Long getProductMerchantStock() {
+        return productMerchantStock;
+    }
+
+    public void setProductMerchantStock(Long productMerchantStock) {
+        this.productMerchantStock = productMerchantStock;
+    }
+
+    public Double getMerchantRating() {
+        return merchantRating;
+    }
+
+    public void setMerchantRating(Double merchantRating) {
+        this.merchantRating = merchantRating;
+    }
+
+    public Double getProductMerchantRating() {
+        return productMerchantRating;
+    }
+
+    public void setProductMerchantRating(Double productMerchantRating) {
+        this.productMerchantRating = productMerchantRating;
     }
 }
