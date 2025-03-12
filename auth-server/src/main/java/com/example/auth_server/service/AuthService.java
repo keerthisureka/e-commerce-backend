@@ -7,5 +7,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface AuthService {
     public ResponseEntity<JWTResponse> doAuthenticate(JWTRequest request);
-    public ResponseEntity<UserDTO> createUser(UserDTO userDTO);
+    public ResponseEntity<JWTResponse> createUser(UserDTO userDTO);
 }

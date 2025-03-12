@@ -53,9 +53,21 @@ public class JWTUtils {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
+        if (userDetails == null) return false;
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
+    public Boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
+    private String getSigningKey() {
+        return secret;
+    }
 }

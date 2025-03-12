@@ -11,12 +11,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -32,6 +34,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private RestTemplate restTemplate; // Use RestTemplate to call the Auth Server
+
+    private static final String AUTH_SERVER_VALIDATE_URL = "http://localhost:8082/auth/validateToken?token=";
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
@@ -44,7 +51,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             //looking good
             token = requestHeader.substring(7);
             try {
+                ResponseEntity<Boolean> validationResponse =
+                        restTemplate.getForEntity(AUTH_SERVER_VALIDATE_URL + token, Boolean.class);
 
+                boolean isValid = Boolean.TRUE.equals(validationResponse.getBody());
+
+                if (!isValid) {
+                    logger.info("Invalid JWT Token received.");
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.getWriter().write("Invalid JWT Token");
+                    return;
+                }
                 username = this.jwtUtilHelper.getUsernameFromToken(token);
 
             } catch (IllegalArgumentException e) {

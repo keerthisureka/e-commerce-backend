@@ -1,9 +1,18 @@
 package com.example.auth_server.dto;
 
 public class UserDTO {
+    String userId;
     String name;
     String email;
     String password;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return name;

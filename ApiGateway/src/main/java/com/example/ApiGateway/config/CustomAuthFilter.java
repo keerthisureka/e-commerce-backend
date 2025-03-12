@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -19,39 +20,35 @@ public class CustomAuthFilter extends AbstractGatewayFilterFactory<CustomAuthFil
     }
 
     public static class Config {
-        // Configuration properties if needed
     }
 
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
-            String isAuthenticated = exchange.getRequest().getHeaders().getFirst("isAuthenticated");
+            String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 
-            if ("true".equalsIgnoreCase(isAuthenticated)) {
-                // Perform JWT validation
-                String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
-                if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                    return Mono.error(new RuntimeException("Missing or invalid Authorization header"));
-                }
-
-                String token = authHeader.substring(7);
-                // Call Auth Service to validate the token
-                return webClientBuilder.build()
-                        .get()
-                        .uri("http://localhost:8082/validateToken?token=" + token)
-                        .retrieve()
-                        .bodyToMono(Boolean.class)
-                        .flatMap(isValid -> {
-                            if (Boolean.TRUE.equals(isValid)) {
-                                return chain.filter(exchange);
-                            } else {
-                                return Mono.error(new RuntimeException("Invalid JWT Token"));
-                            }
-                        });
-            } else {
-                // No authentication required
-                return chain.filter(exchange);
+            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                return Mono.error(new RuntimeException("Missing or invalid Authorization header"));
             }
+
+            // Call Auth Service to validate the token
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://localhost:8082/auth/validateToken?token=" + authHeader.substring(7))
+                    .header(HttpHeaders.AUTHORIZATION, authHeader)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .flatMap(isValid -> {
+                        if (Boolean.TRUE.equals(isValid)) {
+                            return chain.filter(exchange);
+                        } else {
+                            return Mono.error(new RuntimeException("Invalid JWT Token"));
+                        }
+                    })
+                    .onErrorResume(e -> {
+                        exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                        return exchange.getResponse().setComplete();
+                    });
         };
     }
 }

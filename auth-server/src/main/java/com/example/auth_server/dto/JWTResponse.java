@@ -2,7 +2,7 @@ package com.example.auth_server.dto;
 
 public class JWTResponse {
     private String jwtToken;
-    private String username;
+    private String userId;
 
     public String getJwtToken() {
         return jwtToken;
@@ -12,11 +12,11 @@ public class JWTResponse {
         this.jwtToken = jwtToken;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
