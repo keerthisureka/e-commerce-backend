@@ -11,8 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -43,29 +46,52 @@ public class CartServiceImpl implements CartService {
 //    }
 
     @Override
+    @Transactional
     //change user id to cart id maybe do in controller where you could access it
-    public ApiResponse<Boolean> addToCart(String cartId, CartItemDto cartItemDto) {
+    public ApiResponse<Boolean> addToCart(String userId, CartItemDto cartItemDto) {
         try {
-            Cart cart = cartRepository.findById(cartId).get();
-            log.info("User with id {} found cart", cartId);
+            Cart cart = cartRepository.findByUserId(userId).orElse(new Cart());
+            cart.setUserId(userId);
+
+            log.info("User with id {} found cart", userId);
 
             List<CartItem> currentCartItems = cart.getItems();
+            if (currentCartItems == null) {
+                currentCartItems = new ArrayList<>();
+            }
+
             log.info("Cart Item list is accessed");
-            CartItem cartItem = new CartItem();
 
-            cartItem.setProductMerchantId(cartItemDto.getProductMerchantId());
-            cartItem.setName(cartItemDto.getName());
-            cartItem.setPrice(cartItemDto.getPrice());
-            cartItem.setMerchantName(cartItemDto.getMerchantName());
-            cartItem.setQuantity(cartItemDto.getQuantity());
-            cartItem.setImage(cartItemDto.getImage());
+            // Check if the item is already in the cart
+            CartItem existingItem = currentCartItems.stream()
+                    .filter(item -> item.getProductMerchantId().equals(cartItemDto.getProductMerchantId()))
+                    .findFirst()
+                    .orElse(null);
 
-            currentCartItems.add(cartItem);
-            
+            if (existingItem != null) {
+                // Update the quantity of the existing item
+                existingItem.setQuantity(existingItem.getQuantity() + cartItemDto.getQuantity());
+                if (cart.getTotalPrice() == null) {
+                    cart.setTotalPrice(0.0);
+                }
+                cart.setTotalPrice(cart.getTotalPrice() + (cartItemDto.getPrice() * cartItemDto.getQuantity()));
+                log.info("Updated quantity of existing cart item");
+            } else {
+                // Create a new cart item
+                CartItem cartItem = new CartItem();
+                cartItem.setProductMerchantId(cartItemDto.getProductMerchantId());
+                cartItem.setName(cartItemDto.getName());
+                cartItem.setPrice(cartItemDto.getPrice());
+                cartItem.setMerchantName(cartItemDto.getMerchantName());
+                cartItem.setQuantity(cartItemDto.getQuantity());
+                cartItem.setImage(cartItemDto.getImage());
+
+                currentCartItems.add(cartItem);
+                cart.setTotalPrice(cart.getTotalPrice() + (cartItemDto.getPrice() * cartItemDto.getQuantity()));
+                log.info("Added new item to the cart");
+            }
+
             cart.setItems(currentCartItems);
-            log.info("Item added to Cart List");
-
-            //RecalculatePrice(cart, cart.getItems());
 
             cartRepository.save(cart);
             log.info("Cart updated successfully in database");
@@ -78,12 +104,21 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public ApiResponse<Boolean> removeFromCart(String cartId, String productMerchantId) {
-        try{
-            Cart cart = cartRepository.findById(cartId).get();
-            boolean removed = cart.getItems().removeIf(item -> item.getProductMerchantId().equals(productMerchantId));
+    @Transactional
+    public ApiResponse<Boolean> removeFromCart(String userId, String productMerchantId) {
+        try {
+            Cart cart = cartRepository.findByUserId(userId)
+                    .orElseThrow(() -> new RuntimeException("Cart not found"));
+            CartItem itemToRemove = cart.getItems()
+                    .stream()
+                    .filter(item -> item.getProductMerchantId().equals(productMerchantId))
+                    .findFirst()
+                    .orElse(null);
 
-            if(removed) {
+            if (itemToRemove != null) {
+                double itemTotalPrice = itemToRemove.getPrice() * itemToRemove.getQuantity(); // Store the item's total price
+                cart.getItems().remove(itemToRemove);
+                cart.setTotalPrice(cart.getTotalPrice() - itemTotalPrice);
                 cartRepository.save(cart);
                 return new ApiResponse<>(HttpStatus.OK, "Item removed from cart successfully", true);
             } else {
@@ -91,50 +126,82 @@ public class CartServiceImpl implements CartService {
             }
 
         } catch (Exception e) {
-                return new ApiResponse<>(HttpStatus.CONFLICT, "Issue when removing from the cart", false);
+            return new ApiResponse<>(HttpStatus.CONFLICT, "Issue when removing from the cart", false);
         }
     }
 
     @Override
-    public ApiResponse<Long> updateQuantity(String cartId, String productMerchantId, Boolean increase) {
+    @Transactional
+    public ApiResponse<Long> updateQuantity(String userId, String productMerchantId, Boolean increase) {
         try {
-             Cart cart = cartRepository.findById(cartId).get();
-//            .orElseThrow(() -> new RuntimeException("Cart not found"));
-            List<CartItem> cartItemList = cart.getItems();
-            CartItem cartItemToUpdate = cartItemList.stream()
-                    .filter(item -> item.getProductMerchantId().equals(productMerchantId)).findAny().get();
+            Cart cart = cartRepository.findByUserId(userId)
+                    .orElseThrow(() -> new RuntimeException("Cart not found"));
 
-//                    .orElseThrow(() -> new RuntimeException("Cart item not found"));
+            Optional<CartItem> optionalCartItem = cart.getItems().stream()
+                    .filter(item -> item.getProductMerchantId().equals(productMerchantId))
+                    .findFirst();
 
-            if(cartItemToUpdate.getQuantity() >= 1) {
-                cartItemToUpdate.setQuantity(cartItemToUpdate.getQuantity() + (increase ? 1 : -1));
+            if (!optionalCartItem.isPresent()) {
+                return new ApiResponse<>(HttpStatus.NOT_FOUND, "Cart item not found", null);
             }
 
-            cartRepository.save(cart);
-            return new ApiResponse<>(HttpStatus.ACCEPTED, "Quantity updated successfully", cartItemToUpdate.getQuantity());
+            CartItem cartItemToUpdate = optionalCartItem.get();
+            long currentQuantity = cartItemToUpdate.getQuantity();
 
+            if (!increase && currentQuantity == 1) {
+                cart.getItems().remove(cartItemToUpdate);
+            } else {
+                long newQuantity = currentQuantity + (increase ? 1 : -1);
+                cartItemToUpdate.setQuantity(newQuantity);
+            }
+
+            double updatedTotal = cart.getItems().stream()
+                    .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                    .sum();
+            cart.setTotalPrice(updatedTotal);
+
+            cartRepository.save(cart);
+
+            return new ApiResponse<>(HttpStatus.ACCEPTED, "Quantity updated successfully", increase ? currentQuantity + 1 : (currentQuantity == 1 ? 0 : currentQuantity - 1));
+        } catch (RuntimeException e) {
+            return new ApiResponse<>(HttpStatus.NOT_FOUND, e.getMessage(), null);
         } catch (Exception e) {
             return new ApiResponse<>(HttpStatus.CONFLICT, "Failed to update quantity", null);
         }
     }
 
     @Override
-    public ApiResponse<List<CartItemDto>> getAllCartItems(String cartId) {
-        Cart cart = cartRepository.findById(cartId).get();
-        List<CartItem> cartItemList = cart.getItems();
-        List<CartItemDto> cartItemDtoList = cartItemList.stream().map(item -> convertToCartItemDto(item))
-                .collect(Collectors.toList());
-        return new ApiResponse<>(HttpStatus.FOUND, "Fetching all the cart items", cartItemDtoList);
+    public ApiResponse<List<CartItemDto>> getAllCartItems(String userId) {
+        try {
+            Cart cart = cartRepository.findByUserId(userId)
+                    .orElseThrow(() -> new RuntimeException("Cart not found"));
+
+            List<CartItemDto> cartItemDtoList = cart.getItems().stream()
+                    .map(this::convertToCartItemDto)
+                    .collect(Collectors.toList());
+
+            return new ApiResponse<>(HttpStatus.OK, "Fetching all the cart items", cartItemDtoList);
+        } catch (RuntimeException e) {
+            return new ApiResponse<>(HttpStatus.NOT_FOUND, e.getMessage(), null);
+        } catch (Exception e) {
+            return new ApiResponse<>(HttpStatus.CONFLICT, "Failed to fetch cart items", null);
+        }
     }
 
     @Override
-    public ApiResponse<Boolean> clearCart(String cartId) {
+    public ApiResponse<Boolean> clearCart(String userId) {
         try {
-            Cart cart = cartRepository.findById(cartId).get();
-            //handle total price
+            Cart cart = cartRepository.findByUserId(userId)
+                    .orElseThrow(() -> new RuntimeException("Cart not found"));
+
+            // Clear all cart items and reset total price
             cart.getItems().clear();
+            cart.setTotalPrice(0.0);
             cartRepository.save(cart);
-            return new ApiResponse<>(HttpStatus.OK, "Cart cleared", true);
+
+            return new ApiResponse<>(HttpStatus.OK, "Cart cleared successfully", true);
+        } catch (RuntimeException e) {
+            return new ApiResponse<>(HttpStatus.NOT_FOUND, e.getMessage(), false);
         } catch (Exception e) {
             return new ApiResponse<>(HttpStatus.CONFLICT, "Issue while clearing cart", false);
         }
@@ -142,21 +209,26 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public ApiResponse<String> createEmptyCart(String userId) {
-        Cart cart = new Cart();
-        cart.setUserId(userId);
-        cartRepository.save(cart);
-        return new ApiResponse<>(HttpStatus.CREATED, "Created Empty card", cart.getId());
+        try {
+            Cart cart = new Cart();
+            cart.setUserId(userId);
+            cart.setItems(new ArrayList<>()); // Initialize empty item list
+            cart.setTotalPrice(0.0); // Set total price to 0
+            cartRepository.save(cart);
+            return new ApiResponse<>(HttpStatus.CREATED, "Created Empty Cart", cart.getId());
+        } catch (Exception e) {
+            return new ApiResponse<>(HttpStatus.CONFLICT, "Failed to create cart", null);
+        }
     }
 
     private CartItemDto convertToCartItemDto(CartItem cartItem) {
-        CartItemDto cartItemDto = new CartItemDto();
-        cartItemDto.setProductMerchantId(cartItem.getProductMerchantId());
-        cartItemDto.setName(cartItem.getName());
-        cartItemDto.setPrice(cartItem.getPrice());
-        cartItemDto.setQuantity(cartItem.getQuantity());
-        cartItemDto.setMerchantName(cartItem.getMerchantName());
-        return cartItemDto;
+        return new CartItemDto(
+                cartItem.getProductMerchantId(),
+                cartItem.getName(),
+                cartItem.getPrice(),
+                cartItem.getMerchantName(),
+                cartItem.getQuantity(),
+                cartItem.getImage()
+        );
     }
-
-
 }

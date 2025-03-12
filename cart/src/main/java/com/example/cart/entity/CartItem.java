@@ -7,7 +7,7 @@ public class CartItem {
     private String productMerchantId;
     private String image;
     private String name;
-    private Double price;
+    private Double price = 0.0;
     private String merchantName;
-    private Long quantity;
+    private Long quantity = 0L;
 }
