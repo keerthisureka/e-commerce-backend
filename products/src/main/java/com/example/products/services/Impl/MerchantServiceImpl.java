@@ -13,6 +13,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class MerchantServiceImpl implements MerchantService {
@@ -25,16 +27,19 @@ public class MerchantServiceImpl implements MerchantService {
 
 
     @Override
-    public ApiResponse<Boolean> addMerchant(MerchantRequestDto merchantRequestDto) {
+    public ApiResponse<Boolean> addMerchant(List<MerchantRequestDto> merchantRequestDto) {
         try {
-            Merchant merchant = new Merchant();
-            merchant.setName(merchantRequestDto.getName());
-            merchant.setRatings(merchantRequestDto.getRatings());
-            merchantRepository.save(merchant);
+            for (MerchantRequestDto merchantRequestDto1 : merchantRequestDto) {
+                    Merchant merchant = new Merchant();
+                    merchant.setName(merchantRequestDto1.getName());
+                    merchant.setRatings(merchantRequestDto1.getRatings());
+                    merchantRepository.save(merchant);
+            }
             return new ApiResponse<>(HttpStatus.CREATED, "merchant created successfully", true);
         } catch (Exception e) {
             return new ApiResponse<>(HttpStatus.CONFLICT, e.getMessage(), false);
         }
+
     }
 
     @Override

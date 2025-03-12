@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/Merchant")
 @CrossOrigin(origins = "*")
@@ -16,7 +18,7 @@ public class MerchantController {
     private MerchantServiceImpl merchantService;
 
     @PostMapping("/addMerchant")
-    public ResponseEntity<ApiResponse<Boolean>> addMerchant(@RequestBody MerchantRequestDto merchantRequestDto) {
+    public ResponseEntity<ApiResponse<Boolean>> addMerchant(@RequestBody List<MerchantRequestDto> merchantRequestDto) {
         return ResponseEntity.ok(merchantService.addMerchant(merchantRequestDto));
     }
 

@@ -19,7 +19,7 @@ public class ProductController {
     private ProductServiceImpl productService;
 
     @PostMapping("/addProduct")
-    public ResponseEntity<ApiResponse<Boolean>> addProduct(@RequestBody ProductRequestDto productRequestDto) {
+    public ResponseEntity<ApiResponse<Boolean>> addProduct(@RequestBody List<ProductRequestDto> productRequestDto) {
         return ResponseEntity.ok(productService.addProduct(productRequestDto));
     }
 
@@ -31,5 +31,10 @@ public class ProductController {
     @GetMapping("/getByProductId/{productId}")
     public ResponseEntity<ApiResponse<ProductResponseDto>> getByProductId(@PathVariable String productId) {
         return ResponseEntity.ok(productService.getByProductId(productId));
+    }
+
+    @GetMapping("/getProductMerchantId/{productId}/{merchantId}")
+    public ResponseEntity<ApiResponse<String>> getProductMerchantId(@PathVariable String productId, @PathVariable String merchantId) {
+        return ResponseEntity.ok(productService.getProductMerchantId(productId,merchantId));
     }
 }

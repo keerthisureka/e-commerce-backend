@@ -36,41 +36,42 @@ public class ProductServiceImpl implements ProductService {
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public ApiResponse<Boolean> addProduct(ProductRequestDto productRequestDto) {
-        Product product = new Product();
-        product.setName(productRequestDto.getName());
-        product.setImageUrl(productRequestDto.getImageUrl());
-        product.setDescription(productRequestDto.getDescription());
-        product.setUsp(productRequestDto.getUsp());
-        productRepository.save(product);
-        List<ProductMerchantRequestDto> productMerchantRequestDtoList = productRequestDto.getProductMerchantRequestDtoList();
-        List<ProductMerchantResponseDto> productMerchantResponseDtoList = new ArrayList<>();
-        for(ProductMerchantRequestDto productMerchantRequestDto: productMerchantRequestDtoList) {
-            ProductMerchant productMerchant = new ProductMerchant();
-            productMerchant.setMerchantId(productMerchantRequestDto.getMerchantId());
-            productMerchant.setPrice(productMerchantRequestDto.getPrice());
-            productMerchant.setStock(productMerchantRequestDto.getStock());
-            productMerchant.setRatings(productMerchantRequestDto.getRatings());
-            productMerchant.setProductId(product.getId());
+    public ApiResponse<Boolean> addProduct(List<ProductRequestDto> productRequestDto) {
+        for(ProductRequestDto productRequestDto1 : productRequestDto) {
+            Product product = new Product();
+            product.setName(productRequestDto1.getName());
+            product.setImageUrl(productRequestDto1.getImageUrl());
+            product.setDescription(productRequestDto1.getDescription());
+            product.setUsp(productRequestDto1.getUsp());
+            productRepository.save(product);
+            List<ProductMerchantRequestDto> productMerchantRequestDtoList = productRequestDto1.getProductMerchantRequestDtoList();
+            List<ProductMerchantResponseDto> productMerchantResponseDtoList = new ArrayList<>();
+            for (ProductMerchantRequestDto productMerchantRequestDto : productMerchantRequestDtoList) {
+                ProductMerchant productMerchant = new ProductMerchant();
+                productMerchant.setMerchantId(productMerchantRequestDto.getMerchantId());
+                productMerchant.setPrice(productMerchantRequestDto.getPrice());
+                productMerchant.setStock(productMerchantRequestDto.getStock());
+                productMerchant.setRatings(productMerchantRequestDto.getRatings());
+                productMerchant.setProductId(product.getId());
 
-            Merchant merchant = merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get();
-            merchant.setTotalProductsListedByMerchant(merchant.getTotalProductsListedByMerchant() + productMerchantRequestDto.getStock());
-            merchantRepository.save(merchant);
+                Merchant merchant = merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get();
+                merchant.setTotalProductsListedByMerchant(merchant.getTotalProductsListedByMerchant() + productMerchantRequestDto.getStock());
+                merchantRepository.save(merchant);
 
-            ProductMerchantResponseDto productMerchantResponseDto = new ProductMerchantResponseDto();
-            productMerchantResponseDto.setMerchantId(productMerchantRequestDto.getMerchantId());
-            productMerchantResponseDto.setMerchantName(merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get().getName());
-            productMerchantResponseDto.setPrice(productMerchantRequestDto.getPrice());
-            productMerchantResponseDtoList.add(productMerchantResponseDto);
+                ProductMerchantResponseDto productMerchantResponseDto = new ProductMerchantResponseDto();
+                productMerchantResponseDto.setMerchantId(productMerchantRequestDto.getMerchantId());
+                productMerchantResponseDto.setMerchantName(merchantRepository.findById(productMerchantRequestDto.getMerchantId()).get().getName());
+                productMerchantResponseDto.setPrice(productMerchantRequestDto.getPrice());
+                productMerchantResponseDtoList.add(productMerchantResponseDto);
 
-            productMerchantRepository.save(productMerchant);
+                productMerchantRepository.save(productMerchant);
+                product.setMerchantList(productMerchantResponseDtoList);
+
+                publishToKafkaTopic(productRepository.save(product));
+            }
+
         }
-        Collections.sort(productMerchantResponseDtoList, new ScoreComparator());
-        product.setMerchantList(productMerchantResponseDtoList);
-
-        publishToKafkaTopic(productRepository.save(product));
-
-        return new ApiResponse<>(HttpStatus.CREATED," Product added", true);
+        return new ApiResponse<>(HttpStatus.CREATED, " Product added", true);
     }
 
     @Override
@@ -104,6 +105,12 @@ public class ProductServiceImpl implements ProductService {
         productResponseDto.setMerchantList(product.getMerchantList());
 
         return new ApiResponse<>(HttpStatus.FOUND, "Fetched The product", productResponseDto);
+    }
+
+    @Override
+    public ApiResponse<String> getProductMerchantId(String productId, String merchantId) {
+        ProductMerchant productMerchant = productMerchantRepository.findByProductIdAndMerchantId(productId, merchantId);
+        return new ApiResponse<>(HttpStatus.OK, "product merchant id found", productMerchant.getId());
     }
 
     private void  publishToKafkaTopic(Product product) {
