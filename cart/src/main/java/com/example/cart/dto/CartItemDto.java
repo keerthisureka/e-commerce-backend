@@ -13,4 +13,5 @@ public class CartItemDto {
     private Double price;
     private String merchantName;
     private Long quantity;
+    private String image;
 }

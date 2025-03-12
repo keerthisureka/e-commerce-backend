@@ -7,10 +7,12 @@ import com.example.orders.dto.OrderItemsResponseDto;
 import com.example.orders.entity.OrderItems;
 import com.example.orders.entity.OrdersHistory;
 import com.example.orders.feign.CartServiceClient;
+import com.example.orders.feign.ProductServiceClient;
 import com.example.orders.repository.OrderHistoryRepository;
 import com.example.orders.repository.OrderItemsRepository;
 import com.example.orders.services.OrderServices;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -32,20 +34,22 @@ public class OrderServiceImpl implements OrderServices {
     private CartServiceClient cartServiceClient;
 
     @Autowired
+    private ProductServiceClient productServiceClient;
+
+    @Autowired
     private EmailServiceImpl emailService;
 
     @Override
-    public ApiResponse<Boolean> addOrder(String userId, Double totalPrice) {
+    public ApiResponse<Boolean> addOrder(String userId, String cartId, Double totalPrice, String userEmailRequest) {
         try {
-            ApiResponse<List<CartItemDto>> currentCartItemsResponse = cartServiceClient.getAllCartItems(userId);
+            ApiResponse<List<CartItemDto>> currentCartItemsResponse = cartServiceClient.getAllCartItems(cartId);
             List<CartItemDto> currentCartItems = currentCartItemsResponse.getData();
 
             List<OrderItems> items = new ArrayList<>();
 
             OrdersHistory ordersHistory = new OrdersHistory();
-            ordersHistory.setUserId(userId);
             ordersHistory.setTotalAmount(totalPrice);
-
+            ordersHistory.setUserId(userId);
             for (CartItemDto cartItemDto : currentCartItems) {
                 OrderItems orderItems = new OrderItems();
                 orderItems.setProductMerchantId(cartItemDto.getProductMerchantId());
@@ -54,13 +58,14 @@ public class OrderServiceImpl implements OrderServices {
                 orderItems.setQuantity(cartItemDto.getQuantity());
                 orderItems.setOrdersHistory(ordersHistory);
                 items.add(orderItems);
+                productServiceClient.updateMerchantStock(cartItemDto.getProductMerchantId(), cartItemDto.getQuantity());
             }
 
             ordersHistory.setItems(items);
             orderHistoryRepository.save(ordersHistory);
 
             try{
-                String userEmail = "shreyartmail@gmail.com"; // replace this later
+                String userEmail = userEmailRequest;
                 emailService.sendOrderConfirmation(userEmail, ordersHistory.getId());
             } catch (Exception e) {
                 log.info(e.getMessage());
@@ -77,7 +82,7 @@ public class OrderServiceImpl implements OrderServices {
         try {
             List<OrdersHistory> allOrdersByUserId = orderHistoryRepository.findAllByUserId(userId);
             if( allOrdersByUserId.isEmpty()) {
-                return new ApiResponse<>(HttpStatus.BAD_REQUEST, "No orders found for user id" + userId, null);
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST, "No orders found for user in " + userId, null);
             }
             
             List<OrderHistoryResponseDto> allOrders = new ArrayList<>();
@@ -95,6 +100,15 @@ public class OrderServiceImpl implements OrderServices {
         } catch (Exception e) {
             return new ApiResponse<>(HttpStatus.CONFLICT, "Issue while fetching details", null);
         }
+    }
+
+    @Override
+    public ApiResponse<String> createEmptyOrderHistory(String userId) {
+        OrdersHistory order = new OrdersHistory();
+        order.setUserId(userId);
+        orderHistoryRepository.save(order);
+        return new ApiResponse<>(HttpStatus.CREATED, " empty order history created", order.getId());
+
     }
 
     private static OrderHistoryResponseDto getOrderHistoryResponseDto(List<OrderItems> allItemsOfOrder, String orderId) {

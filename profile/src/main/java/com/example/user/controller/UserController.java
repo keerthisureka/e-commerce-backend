@@ -5,13 +5,11 @@ import com.example.user.dto.UserRequestDto;
 import com.example.user.services.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/User")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired

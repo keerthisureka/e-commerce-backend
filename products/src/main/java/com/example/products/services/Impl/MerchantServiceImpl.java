@@ -39,17 +39,21 @@ public class MerchantServiceImpl implements MerchantService {
 
     @Override
     public ApiResponse<Boolean> updateMerchantStock(String productMerchantId, Long quantity) {
-        ProductMerchant productMerchant = productMerchantRepository.findById(productMerchantId).get();
-        Long currentStock = productMerchant.getStock();
-        if(currentStock - quantity > 0) {
-            productMerchant.setStock(currentStock - quantity);
+        if(productMerchantRepository.existsById(productMerchantId)) {
+            ProductMerchant productMerchant = productMerchantRepository.findById(productMerchantId).get();
+            Long currentStock = productMerchant.getStock();
+            if (currentStock - quantity > 0) {
+                productMerchant.setStock(currentStock - quantity);
+            } else {
+                return new ApiResponse<>(HttpStatus.BAD_REQUEST, "Out Of Stock", false);
+            }
+            productMerchantRepository.save(productMerchant);
+            Merchant merchant = merchantRepository.findById(productMerchant.getMerchantId()).get();
+            merchant.setTotalProductsSoldByMerchant(merchant.getTotalProductsSoldByMerchant() + quantity);
+            merchantRepository.save(merchant);
+            return new ApiResponse<>(HttpStatus.OK, "Updated Merchant stocks with quantity", true);
         } else {
-            return new ApiResponse<>(HttpStatus.BAD_REQUEST, "Out Of Stock", false);
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST, "Merchant with id doesnt exist as he has not products yet", false);
         }
-        productMerchantRepository.save(productMerchant);
-        Merchant merchant = merchantRepository.findById(productMerchant.getMerchantId()).get();
-        merchant.setTotalProductsSoldByMerchant( merchant.getTotalProductsSoldByMerchant() + quantity);
-        merchantRepository.save(merchant);
-        return new ApiResponse<>(HttpStatus.OK, "Updated Merchant stocks with quantity", true);
     }
 }

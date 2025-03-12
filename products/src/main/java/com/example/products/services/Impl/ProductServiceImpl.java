@@ -85,6 +85,7 @@ public class ProductServiceImpl implements ProductService {
             productCardResponseDto.setPrice(Objects.requireNonNull(product.getMerchantList().get(0)).getPrice());
             productCardResponseDto.setDescription(product.getDescription());
             productCardResponseDto.setImage(product.getImageUrl());
+            productCardResponseDto.setUsp(product.getUsp());
             allProductsResponse.add(productCardResponseDto);
         }
 

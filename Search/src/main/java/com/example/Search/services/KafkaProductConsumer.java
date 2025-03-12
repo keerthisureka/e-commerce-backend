@@ -1,7 +1,7 @@
 package com.example.Search.services;
 
-import com.example.Search.dto.ProductResponseDto;
+import com.example.Search.dto.ProductKafkaProduceDto;
 
 public interface KafkaProductConsumer {
-    public void consume(ProductResponseDto productResponseDto);
+    public void consume(String productResponseDto);
 }

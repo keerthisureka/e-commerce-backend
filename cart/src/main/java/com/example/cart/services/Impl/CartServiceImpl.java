@@ -2,7 +2,7 @@ package com.example.cart.services.Impl;
 
 import com.example.cart.dto.ApiResponse;
 import com.example.cart.dto.CartItemDto;
-import com.example.cart.dto.CartResponseDto;
+//import com.example.cart.dto.CartResponseDto;
 import com.example.cart.entity.Cart;
 import com.example.cart.entity.CartItem;
 import com.example.cart.repository.CartRepository;
@@ -30,24 +30,24 @@ public class CartServiceImpl implements CartService {
 //        cart.setTotalPrice(updatedTotalPrice);
 //    }
 
-    private CartResponseDto convertToCartResponse(Cart cart) {
-        List<CartItemDto> itemDtos = cart.getItems().stream()
-                .map(item -> new CartItemDto(
-                    item.getProductMerchantId(),
-                    item.getName(),
-                    item.getPrice(),
-                    item.getMerchantName(),
-                    item.getQuantity()
-                )).collect(Collectors.toList());
-        return new CartResponseDto(cart.getUserId(),itemDtos,cart.getTotalPrice());
-    }
+//    private CartResponseDto convertToCartResponse(Cart cart) {
+//        List<CartItemDto> itemDtos = cart.getItems().stream()
+//                .map(item -> new CartItemDto(
+//                    item.getProductMerchantId(),
+//                    item.getName(),
+//                    item.getPrice(),
+//                    item.getMerchantName(),
+//                    item.getQuantity()
+//                )).collect(Collectors.toList());
+//        return new CartResponseDto(cart.getUserId(),itemDtos,cart.getTotalPrice());
+//    }
 
     @Override
     //change user id to cart id maybe do in controller where you could access it
-    public ApiResponse<Boolean> addToCart(String userId, CartItemDto cartItemDto) {
+    public ApiResponse<Boolean> addToCart(String cartId, CartItemDto cartItemDto) {
         try {
-            Cart cart = cartRepository.findById(userId).get();
-            log.info("User with id {} found cart", userId);
+            Cart cart = cartRepository.findById(cartId).get();
+            log.info("User with id {} found cart", cartId);
 
             List<CartItem> currentCartItems = cart.getItems();
             log.info("Cart Item list is accessed");
@@ -58,6 +58,7 @@ public class CartServiceImpl implements CartService {
             cartItem.setPrice(cartItemDto.getPrice());
             cartItem.setMerchantName(cartItemDto.getMerchantName());
             cartItem.setQuantity(cartItemDto.getQuantity());
+            cartItem.setImage(cartItemDto.getImage());
 
             currentCartItems.add(cartItem);
             
@@ -77,9 +78,9 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public ApiResponse<Boolean> removeFromCart(String userId, String productMerchantId) {
+    public ApiResponse<Boolean> removeFromCart(String cartId, String productMerchantId) {
         try{
-            Cart cart = cartRepository.findById(userId).get();
+            Cart cart = cartRepository.findById(cartId).get();
             boolean removed = cart.getItems().removeIf(item -> item.getProductMerchantId().equals(productMerchantId));
 
             if(removed) {
@@ -95,9 +96,9 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public ApiResponse<Long> updateQuantity(String userId, String productMerchantId, Boolean increase) {
+    public ApiResponse<Long> updateQuantity(String cartId, String productMerchantId, Boolean increase) {
         try {
-             Cart cart = cartRepository.findById(userId).get();
+             Cart cart = cartRepository.findById(cartId).get();
 //            .orElseThrow(() -> new RuntimeException("Cart not found"));
             List<CartItem> cartItemList = cart.getItems();
             CartItem cartItemToUpdate = cartItemList.stream()
@@ -118,8 +119,8 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public ApiResponse<List<CartItemDto>> getAllCartItems(String userId) {
-        Cart cart = cartRepository.findById(userId).get();
+    public ApiResponse<List<CartItemDto>> getAllCartItems(String cartId) {
+        Cart cart = cartRepository.findById(cartId).get();
         List<CartItem> cartItemList = cart.getItems();
         List<CartItemDto> cartItemDtoList = cartItemList.stream().map(item -> convertToCartItemDto(item))
                 .collect(Collectors.toList());
@@ -127,9 +128,9 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public ApiResponse<Boolean> clearCart(String userId) {
+    public ApiResponse<Boolean> clearCart(String cartId) {
         try {
-            Cart cart = cartRepository.findById(userId).get();
+            Cart cart = cartRepository.findById(cartId).get();
             //handle total price
             cart.getItems().clear();
             cartRepository.save(cart);
@@ -137,6 +138,14 @@ public class CartServiceImpl implements CartService {
         } catch (Exception e) {
             return new ApiResponse<>(HttpStatus.CONFLICT, "Issue while clearing cart", false);
         }
+    }
+
+    @Override
+    public ApiResponse<String> createEmptyCart(String userId) {
+        Cart cart = new Cart();
+        cart.setUserId(userId);
+        cartRepository.save(cart);
+        return new ApiResponse<>(HttpStatus.CREATED, "Created Empty card", cart.getId());
     }
 
     private CartItemDto convertToCartItemDto(CartItem cartItem) {

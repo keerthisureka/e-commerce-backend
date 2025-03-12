@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Orders")
+@CrossOrigin(origins = "*")
 public class OrderController {
 
     @Autowired
@@ -20,18 +21,23 @@ public class OrderController {
     @Autowired
     private CartServiceClient cartServiceClient;
 
-    @PostMapping("/addToOrderHistory/{userId}/{totalPrice}")
-    public ResponseEntity<ApiResponse<Boolean>> addToOrderHistory(@PathVariable String userId, @PathVariable Double totalPrice) {
-        return ResponseEntity.ok(orderService.addOrder(userId,totalPrice));
+    @PostMapping("/addToOrderHistory/{userId}/{cartId}/{userEmail}/{totalPrice}")
+    public ResponseEntity<ApiResponse<Boolean>> addToOrderHistory(@PathVariable String userId, @PathVariable String cartId, @PathVariable Double totalPrice, @PathVariable String userEmail) {
+        return ResponseEntity.ok(orderService.addOrder(userId,cartId,totalPrice,userEmail));
     }
 
-    @DeleteMapping("/clearCart/{userId}")
-    public ResponseEntity<ApiResponse<Boolean>> clearCart(@PathVariable String userId) {
-        return ResponseEntity.ok(cartServiceClient.clearCart(userId));
+    @DeleteMapping("/clearCart/{cartId}")
+    public ResponseEntity<ApiResponse<Boolean>> clearCart(@PathVariable String cartId) {
+        return ResponseEntity.ok(cartServiceClient.clearCart(cartId));
     }
 
     @GetMapping("/getAllOrders/{userId}")
     public ResponseEntity<ApiResponse<List<OrderHistoryResponseDto>>> getAllOrders(@PathVariable String userId) {
         return ResponseEntity.ok(orderService.getAllOrders(userId));
     }
-}
+
+    @GetMapping("/getEmptyOrderId/{userId}")
+    public ResponseEntity<ApiResponse<String>> getEmptyOrderHistoryId(@PathVariable String userId) {
+        return ResponseEntity.ok(orderService.createEmptyOrderHistory(userId));
+    }
+ }

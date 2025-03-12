@@ -1,6 +1,6 @@
 package com.example.Search.services.impl;
 
-import com.example.Search.dto.ProductResponseDto;
+import com.example.Search.dto.ProductKafkaProduceDto;
 import com.example.Search.entity.Product;
 import com.example.Search.services.ProductService;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     private SolrTemplate solrTemplate;
 
     @Override
-    public List<ProductResponseDto> searchProducts(String productName) {
+    public List<ProductKafkaProduceDto> searchProducts(String productName) {
         SolrQuery query = new SolrQuery();
         query.setQuery("productName:*" + productName + "*");
         query.addFilterQuery("productMerchantStock:[1 TO *]");
@@ -46,9 +46,9 @@ public class ProductServiceImpl implements ProductService {
         try {
             QueryResponse response = solrTemplate.getSolrClient().query("mycore", query);
             List<Product> products =  response.getBeans(Product.class);
-            List<ProductResponseDto> productDtoList = new ArrayList<>();
+            List<ProductKafkaProduceDto> productDtoList = new ArrayList<>();
             for (Product product : products) {
-                ProductResponseDto productDto = new ProductResponseDto();
+                ProductKafkaProduceDto productDto = new ProductKafkaProduceDto();
                 BeanUtils.copyProperties(product, productDto);
                 productDtoList.add(productDto);
             }
