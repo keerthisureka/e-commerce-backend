@@ -1,0 +1,14 @@
+<field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
+<field name="merchantId" type="string" stored="true"/>
+<field name="merchantName" type="text_general" indexed="true" stored="true" multiValued="false"/>
+<field name="merchantRating" type="pdoubles" stored="true" docValues="true" multiValued="false"/>
+<field name="productDescription" type="text_general" indexed="true" stored="true" multiValued="false"/>
+<field name="productId" type="string" stored="true"/>
+<field name="productImageUrl" type="string" stored="true"/>
+<field name="productMerchantPrice" type="pdoubles" stored="true" docValues="true" multiValued="false"/>
+<field name="productMerchantRating" type="pdoubles" stored="true" docValues="true" multiValued="false"/>
+<field name="productMerchantStock" type="plongs" stored="true" docValues="true" multiValued="false"/>
+<field name="productName" type="text_general" indexed="true" stored="true" multiValued="false"/>
+<field name="productUsp" type="text_general" indexed="true" stored="true" multiValued="false"/>
+<field name="totalProductsOfferedByMerchant" type="plongs" stored="true" docValues="true" multiValued="false"/>
+<field name="totalProductsSoldByMerchant" type="plongs" stored="true" docValues="true" multiValued="false"/>

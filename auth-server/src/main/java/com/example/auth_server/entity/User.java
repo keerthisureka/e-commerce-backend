@@ -21,11 +21,13 @@ public class User implements UserDetails {
     @Id
     private String userId;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     public String getUserId() {

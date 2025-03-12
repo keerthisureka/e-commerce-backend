@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers("/home/**").authenticated()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/Cart/**").denyAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception

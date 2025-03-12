@@ -1,0 +1,50 @@
+"id","name","ratings","total_products_listed_by_merchant","total_products_sold_by_merchant"
+"302db8a7-6003-4d72-bd8a-1b20411ac47b","Epson",4,35,0
+"35783a0c-0197-411d-8367-d825beebf4a2","Xiaomi",4.2,0,0
+"d91fff55-101d-4059-bb36-3778e8c98b37","HyperX",4.1,70,0
+"e20a95f4-295a-4f25-8d5d-315779a3591a","Logitech",4.3,80,0
+"bcc049ca-4ffc-45db-869a-12e4e74d369a","LG",4.3,120,0
+"b794c453-b6b3-4eae-b9ca-b02dc73e72e5","NVIDIA",4.8,50,0
+"6be5e987-b1cb-4cb2-9fe8-ce26d5b2ab9d","OnePlus",4.4,70,0
+"3bf53acc-9c88-4757-b7a1-5b47f2999174","Corsair",4.4,50,0
+"40761abe-99eb-4d5a-867a-9fa562b21c8a","Sony",4.6,335,0
+"43d0c19a-91e2-4a4f-a933-2ba919e3687d","PlayStation Store",4.7,60,0
+"8a8c4e3b-beca-4777-8d2e-2caa62e95f6b","JBL",4.4,90,0
+"dce004f5-724f-4901-b227-08ae88a1bae7","EVGA",4.3,40,0
+"3f979dea-0cb1-418f-9069-940e9142cd7d","HP",4.1,40,0
+"f18de23e-a430-4e36-873d-d21751eb992d","Intel",4.6,35,0
+"a24d1d10-6f41-4f66-a54f-e16c8ebc30ab","MSI",4.2,25,0
+"fa944922-efca-480d-ad26-c9fc106cee94","Micro Center",4.4,216,0
+"3501e0ff-3035-4855-b57a-97427b123383","Google Store",4.5,80,0
+"18fba38c-133d-488d-bb2e-ddc50e798318","Oculus",4.3,40,0
+"317c3a01-075f-4d43-aa34-ab5124282083","Walmart",4.2,120,0
+"e8fe836f-035a-4280-8911-b3f69ed912fd","DJI",4.5,25,0
+"e12e126c-903b-47ac-95c2-b8de897aa5cf","TCL",3.8,45,0
+"3fc76339-7c1e-46b0-aa62-68398916c539","ASUS",4.3,200,0
+"9a57b69b-1eb0-465c-bf05-88ff0449201c","Razer",4.1,40,0
+"5816bda3-8315-4aa0-a1d0-a327be31fe81","Dell",4.2,60,0
+"95aaa0c3-ef74-460a-a01f-59453fee9c49","Nintendo Store",4.6,70,0
+"1a186185-7027-4893-9f5a-c852c3073a60","Roku",4.1,90,0
+"4305bfb1-7d47-4799-8ee1-908afdc8e381","Anker",4.3,120,0
+"5a9702f3-66e9-4d40-8794-329d3941efa5","Bose",4.5,440,0
+"aa9e0f09-c607-4c07-9f13-54a920afd392","Lenovo",4,50,0
+"a75cb713-d639-43fa-b737-1ebaece22dea","Target",4.1,160,0
+"23154d85-663b-4a87-b002-062a159c5e74","Philips",3.9,60,0
+"a64a68f1-bbc7-4230-b1b1-93dcd017098e","GoPro",4.4,60,0
+"45621745-eccf-4991-b158-f95d8e5673b1","Sennheiser",4.6,60,0
+"b3838a5e-28e7-4516-ae3c-03c18b305f0a","Apple Store",4.9,1040,0
+"50a708d0-8a6f-4a93-a5df-185d5e89073b","AMD",4.5,30,0
+"c963f22d-d30a-46be-b974-f8fdec96a817","Panasonic",4,30,0
+"4a738b67-4f05-4db4-a138-6b05b00eb79d","Zotac",4,30,0
+"2d8c49cd-4f95-434e-a935-7176d65e4282","Brother",3.9,45,0
+"0f279b5b-bcc7-4de8-bc83-83a91c6366b2","Best Buy",4.5,2181,0
+"cf89e2d0-85f1-4433-bd05-6d4fcb486158","Acer",3.9,35,0
+"4deaf454-2b9a-4999-9168-fcff110bdd86","Hisense",3.7,40,0
+"a8e14839-d394-416b-be2a-8839515e620a","Samsung",4.7,365,0
+"3372c805-e263-42de-808a-75e3ec3bec71","B&H Photo Video",4.6,325,0
+"6b9ee2a9-3dac-4d88-85d0-7fdd113d21b9","Harman Kardon",4.3,45,0
+"86a79319-a85a-454c-87e0-e42f863773b0","Amazon",4.8,2450,0
+"d1f1d959-c692-414a-890e-35924849acdc","Gigabyte",4.2,30,0
+"d6ffcbde-6947-4fe2-9d31-35a438649d54","SteelSeries",4.2,60,0
+"b53155ec-90f3-467d-a77d-c235875bfaa4","Xbox Store",4.5,100,0
+"2cec77d7-4638-4dc6-8644-317449cb8dc6","Newegg",4.3,625,0
