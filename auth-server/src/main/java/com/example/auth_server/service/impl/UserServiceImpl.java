@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
         user.setUserId(UUID.randomUUID().toString());
         return userRepository.save(user);
     }
+
+    public String getEmailByUserId(String userId) {
+        User user = userRepository.findById(userId).get();
+        return user.getEmail();
+    }
 }

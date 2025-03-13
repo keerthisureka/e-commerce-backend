@@ -35,6 +35,7 @@ public class ProductController {
 
     @GetMapping("/getProductMerchantId/{productId}/{merchantId}")
     public ResponseEntity<ApiResponse<String>> getProductMerchantId(@PathVariable String productId, @PathVariable String merchantId) {
+        System.out.println(productId + " " + merchantId);
         return ResponseEntity.ok(productService.getProductMerchantId(productId,merchantId));
     }
 }

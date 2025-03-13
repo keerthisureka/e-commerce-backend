@@ -15,6 +15,6 @@ public interface CartServiceClient {
     @GetMapping("/Cart/getAllCartItems/{userId}")
     ApiResponse<List<CartItemDto>> getAllCartItems(@PathVariable String userId);
 
-    @DeleteMapping("/Cart/clearCart/{cartId}")
-    ApiResponse<Boolean> clearCart(@PathVariable String cartId);
+    @DeleteMapping("/Cart/clearCart/{userId}")
+    ApiResponse<Boolean> clearCart(@PathVariable String userId);
 }

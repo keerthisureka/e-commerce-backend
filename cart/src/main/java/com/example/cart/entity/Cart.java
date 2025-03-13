@@ -14,5 +14,5 @@ public class Cart {
     private String id;
     private String userId;
     private List<CartItem> items = new ArrayList<>();
-    private Double totalPrice;
+    private Double totalPrice = 0.0;
 }

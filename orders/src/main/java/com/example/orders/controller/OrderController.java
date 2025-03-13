@@ -21,14 +21,14 @@ public class OrderController {
     @Autowired
     private CartServiceClient cartServiceClient;
 
-    @PostMapping("/addToOrderHistory/{userId}/{cartId}/{userEmail}/{totalPrice}")
-    public ResponseEntity<ApiResponse<Boolean>> addToOrderHistory(@PathVariable String userId, @PathVariable String cartId, @PathVariable Double totalPrice, @PathVariable String userEmail) {
-        return ResponseEntity.ok(orderService.addOrder(userId,cartId,totalPrice,userEmail));
+    @PostMapping("/addToOrderHistory/{userId}/{totalPrice}")
+    public ResponseEntity<ApiResponse<Boolean>> addToOrderHistory(@PathVariable String userId, @PathVariable Double totalPrice) {
+        return ResponseEntity.ok(orderService.addOrder(userId,totalPrice));
     }
 
-    @DeleteMapping("/clearCart/{cartId}")
-    public ResponseEntity<ApiResponse<Boolean>> clearCart(@PathVariable String cartId) {
-        return ResponseEntity.ok(cartServiceClient.clearCart(cartId));
+    @DeleteMapping("/clearCart/{userId}")
+    public ResponseEntity<ApiResponse<Boolean>> clearCart(@PathVariable String userId) {
+        return ResponseEntity.ok(cartServiceClient.clearCart(userId));
     }
 
     @GetMapping("/getAllOrders/{userId}")

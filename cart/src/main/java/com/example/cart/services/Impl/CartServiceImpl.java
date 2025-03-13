@@ -46,7 +46,6 @@ public class CartServiceImpl implements CartService {
 //    }
 
     @Override
-    @Transactional
     //change user id to cart id maybe do in controller where you could access it
     public ApiResponse<Boolean> addToCart(String userId, CartItemDto cartItemDto) {
         try {
@@ -71,10 +70,8 @@ public class CartServiceImpl implements CartService {
             if (existingItem != null) {
                 // Update the quantity of the existing item
                 existingItem.setQuantity(existingItem.getQuantity() + cartItemDto.getQuantity());
-                if (cart.getTotalPrice() == null) {
-                    cart.setTotalPrice(0.0);
-                }
-                cart.setTotalPrice(cart.getTotalPrice() + (cartItemDto.getPrice() * cartItemDto.getQuantity()));
+                Double currentTotal = cart.getTotalPrice() != null ? cart.getTotalPrice() : 0.0;
+                cart.setTotalPrice(currentTotal + (cartItemDto.getPrice() * cartItemDto.getQuantity()));
                 log.info("Updated quantity of existing cart item");
             } else {
                 // Create a new cart item

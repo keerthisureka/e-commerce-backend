@@ -8,6 +8,7 @@ import com.example.orders.entity.OrderItems;
 import com.example.orders.entity.OrdersHistory;
 import com.example.orders.feign.CartServiceClient;
 import com.example.orders.feign.ProductServiceClient;
+import com.example.orders.feign.UserServiceClient;
 import com.example.orders.repository.OrderHistoryRepository;
 import com.example.orders.repository.OrderItemsRepository;
 import com.example.orders.services.OrderServices;
@@ -37,12 +38,17 @@ public class OrderServiceImpl implements OrderServices {
     private ProductServiceClient productServiceClient;
 
     @Autowired
+    private UserServiceClient userServiceClients;
+
+    @Autowired
     private EmailServiceImpl emailService;
 
+
+
     @Override
-    public ApiResponse<Boolean> addOrder(String userId, String cartId, Double totalPrice, String userEmailRequest) {
+    public ApiResponse<Boolean> addOrder(String userId, Double totalPrice) {
         try {
-            ApiResponse<List<CartItemDto>> currentCartItemsResponse = cartServiceClient.getAllCartItems(cartId);
+            ApiResponse<List<CartItemDto>> currentCartItemsResponse = cartServiceClient.getAllCartItems(userId);
             List<CartItemDto> currentCartItems = currentCartItemsResponse.getData();
 
             List<OrderItems> items = new ArrayList<>();
@@ -65,7 +71,7 @@ public class OrderServiceImpl implements OrderServices {
             orderHistoryRepository.save(ordersHistory);
 
             try{
-                String userEmail = userEmailRequest;
+                String userEmail = userServiceClients.getEmailByUserId(userId);
                 emailService.sendOrderConfirmation(userEmail, ordersHistory.getId());
             } catch (Exception e) {
                 log.info(e.getMessage());
@@ -82,7 +88,7 @@ public class OrderServiceImpl implements OrderServices {
         try {
             List<OrdersHistory> allOrdersByUserId = orderHistoryRepository.findAllByUserId(userId);
             if( allOrdersByUserId.isEmpty()) {
-            return new ApiResponse<>(HttpStatus.BAD_REQUEST, "No orders found for user in " + userId, null);
+                return new ApiResponse<>(HttpStatus.BAD_REQUEST, "No orders found for user in " + userId, null);
             }
             
             List<OrderHistoryResponseDto> allOrders = new ArrayList<>();
