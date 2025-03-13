@@ -5,6 +5,7 @@ import com.example.cart.dto.CartItemDto;
 //import com.example.cart.dto.CartResponseDto;
 import com.example.cart.entity.Cart;
 import com.example.cart.entity.CartItem;
+import com.example.cart.feign.ProductServiceClient;
 import com.example.cart.repository.CartRepository;
 import com.example.cart.services.CartService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class CartServiceImpl implements CartService {
 
     @Autowired
     private CartRepository cartRepository;
+
+    @Autowired
+    private ProductServiceClient productServiceClient;
 
 //    private void RecalculatePrice(Cart cart, List<CartItem> cartItemList) {
 //        Double updatedTotalPrice = cartItemList.stream()
@@ -144,13 +148,27 @@ public class CartServiceImpl implements CartService {
 
             CartItem cartItemToUpdate = optionalCartItem.get();
             long currentQuantity = cartItemToUpdate.getQuantity();
+            long newQuantity = currentQuantity;
 
-            if (!increase && currentQuantity == 1) {
-                cart.getItems().remove(cartItemToUpdate);
+            if (!increase) {
+                if (currentQuantity == 1) {
+                    cart.getItems().remove(cartItemToUpdate);
+                    newQuantity = 0;
+                } else {
+                    newQuantity--;
+                }
             } else {
-                long newQuantity = currentQuantity + (increase ? 1 : -1);
+                Long stock = productServiceClient.getStock(productMerchantId).getData(); // Get available stock
+                if (currentQuantity + 1 > stock) {
+                    return new ApiResponse<>(HttpStatus.BAD_REQUEST, "Max stock reached: " + stock + " units", -1L);
+                }
+                newQuantity++;
+            }
+
+            if (newQuantity > 0) {
                 cartItemToUpdate.setQuantity(newQuantity);
             }
+
 
             double updatedTotal = cart.getItems().stream()
                     .mapToDouble(item -> item.getPrice() * item.getQuantity())
@@ -159,7 +177,7 @@ public class CartServiceImpl implements CartService {
 
             cartRepository.save(cart);
 
-            return new ApiResponse<>(HttpStatus.ACCEPTED, "Quantity updated successfully", increase ? currentQuantity + 1 : (currentQuantity == 1 ? 0 : currentQuantity - 1));
+            return new ApiResponse<>(HttpStatus.OK, "Quantity updated successfully", newQuantity);
         } catch (RuntimeException e) {
             return new ApiResponse<>(HttpStatus.NOT_FOUND, e.getMessage(), null);
         } catch (Exception e) {

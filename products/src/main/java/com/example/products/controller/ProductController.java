@@ -38,4 +38,9 @@ public class ProductController {
         System.out.println(productId + " " + merchantId);
         return ResponseEntity.ok(productService.getProductMerchantId(productId,merchantId));
     }
+
+    @GetMapping("/getStock/{productMerchantId}")
+    public  ResponseEntity<ApiResponse<Long>> getStock(@PathVariable String productMerchantId) {
+        return ResponseEntity.ok(productService.getProductMerchantStock(productMerchantId));
+    }
 }

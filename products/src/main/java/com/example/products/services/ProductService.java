@@ -16,4 +16,6 @@ public interface ProductService {
     public ApiResponse<ProductResponseDto> getByProductId(String productId);
 
     public ApiResponse<String> getProductMerchantId(String productId, String merchantId);
+
+    public ApiResponse<Long> getProductMerchantStock(String productMerchantId);
 }

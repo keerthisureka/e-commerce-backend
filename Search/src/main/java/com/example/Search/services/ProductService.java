@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface ProductService {
     List<ProductKafkaProduceDto> searchProducts(String productName);
+
+    List<ProductKafkaProduceDto> getAllProducts();
+
+    List<ProductKafkaProduceDto> getByProductId(String productId);
 }

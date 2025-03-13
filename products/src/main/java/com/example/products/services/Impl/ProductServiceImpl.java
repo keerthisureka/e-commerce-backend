@@ -113,6 +113,12 @@ public class ProductServiceImpl implements ProductService {
         return new ApiResponse<>(HttpStatus.OK, "product merchant id found", productMerchant.getId());
     }
 
+    @Override
+    public ApiResponse<Long> getProductMerchantStock(String productMerchantId) {
+        ProductMerchant productMerchant = productMerchantRepository.findById(productMerchantId).get();
+        return new ApiResponse<>(HttpStatus.FOUND, "Stock of the the product", productMerchant.getStock());
+    }
+
     private void  publishToKafkaTopic(Product product) {
         for(ProductMerchantResponseDto productMerchantResponseDto : product.getMerchantList()) {
             ProductKafkaProduceDto productKafkaProduceDto = new ProductKafkaProduceDto();

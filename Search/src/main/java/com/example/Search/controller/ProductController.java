@@ -22,4 +22,16 @@ public class ProductController {
         ApiResponse<List<ProductKafkaProduceDto>> response = new ApiResponse<>("Products matching your search are listed below: ", HttpStatus.OK, productService.searchProducts(productName));
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/getAllProducts")
+    public ResponseEntity<ApiResponse<List<ProductKafkaProduceDto>>> getAllProducts() {
+        ApiResponse<List<ProductKafkaProduceDto>> response = new ApiResponse<>("All products are: ", HttpStatus.OK, productService.getAllProducts());
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/getByProductId/{productId}")
+    public ResponseEntity<ApiResponse<List<ProductKafkaProduceDto>>> getByProductId(@PathVariable String productId) {
+        ApiResponse<List<ProductKafkaProduceDto>> response = new ApiResponse<>("Merchants selling your product are listed below: ", HttpStatus.OK, productService.getByProductId(productId));
+        return ResponseEntity.ok(response);
+    }
 }

@@ -58,4 +58,67 @@ public class ProductServiceImpl implements ProductService {
             return Collections.emptyList();
         }
     }
+
+    @Override
+    public List<ProductKafkaProduceDto> getAllProducts() {
+        SolrQuery query = new SolrQuery();
+        query.setQuery("*:*");
+        query.addFilterQuery("productMerchantStock:[1 TO *]");
+
+        // Add the custom score function to rank merchants
+        String scoreFunction = "sum("
+                + "recip(productMerchantPrice,5,20,20),"
+                + "recip(totalProductsOfferedByMerchant,1,12,12),"
+                + "recip(totalProductsSoldByMerchant,1,8,8),"
+                + "recip(productMerchantStock,1,10,10),"
+                + "recip(merchantRating,1,5,5),"
+                + "recip(productMerchantRating,1,5,5)"
+                + ")";
+        try {
+            QueryResponse response = solrTemplate.getSolrClient().query("mycore", query);
+            List<Product> products =  response.getBeans(Product.class);
+            List<ProductKafkaProduceDto> productDtoList = new ArrayList<>();
+            for (Product product : products) {
+                ProductKafkaProduceDto productDto = new ProductKafkaProduceDto();
+                BeanUtils.copyProperties(product, productDto);
+                productDtoList.add(productDto);
+            }
+            return productDtoList;
+        } catch (SolrServerException | IOException e) {
+            System.err.println("Error executing Solr query: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public List<ProductKafkaProduceDto> getByProductId(String productId) {
+        SolrQuery query = new SolrQuery();
+        query.setQuery("productId:" + productId);
+        query.addFilterQuery("productMerchantStock:[1 TO *]");
+
+        // Add the custom score function to rank merchants
+        String scoreFunction = "sum("
+                + "recip(productMerchantPrice,5,20,20),"
+                + "recip(totalProductsOfferedByMerchant,1,12,12),"
+                + "recip(totalProductsSoldByMerchant,1,8,8),"
+                + "recip(productMerchantStock,1,10,10),"
+                + "recip(merchantRating,1,5,5),"
+                + "recip(productMerchantRating,1,5,5)"
+                + ")";
+
+        try {
+            QueryResponse response = solrTemplate.getSolrClient().query("mycore", query);
+            List<Product> products =  response.getBeans(Product.class);
+            List<ProductKafkaProduceDto> productDtoList = new ArrayList<>();
+            for (Product product : products) {
+                ProductKafkaProduceDto productDto = new ProductKafkaProduceDto();
+                BeanUtils.copyProperties(product, productDto);
+                productDtoList.add(productDto);
+            }
+            return productDtoList;
+        } catch (SolrServerException | IOException e) {
+            System.err.println("Error executing Solr query: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
 }
