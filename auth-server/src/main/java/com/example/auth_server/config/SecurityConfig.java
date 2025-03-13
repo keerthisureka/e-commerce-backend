@@ -72,6 +72,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/Cart/**").authenticated()
+                        .requestMatchers("/Orders/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception
