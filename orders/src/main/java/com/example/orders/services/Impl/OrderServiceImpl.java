@@ -117,7 +117,7 @@ public class OrderServiceImpl implements OrderServices {
 
     }
 
-    private static OrderHistoryResponseDto getOrderHistoryResponseDto(List<OrderItems> allItemsOfOrder, String orderId) {
+    private OrderHistoryResponseDto getOrderHistoryResponseDto(List<OrderItems> allItemsOfOrder, String orderId) {
         List<OrderItemsResponseDto> allOrderItems = new ArrayList<>();
 
         for(OrderItems orderItems : allItemsOfOrder) {
@@ -131,6 +131,7 @@ public class OrderServiceImpl implements OrderServices {
         OrderHistoryResponseDto orderHistoryResponseDto = new OrderHistoryResponseDto();
         orderHistoryResponseDto.setId(orderId);
         orderHistoryResponseDto.setOrderItemsResponseDtoList(allOrderItems);
+        orderHistoryResponseDto.setTotalPrice(orderHistoryRepository.findById(orderId).get().getTotalAmount());
         return orderHistoryResponseDto;
     }
 }

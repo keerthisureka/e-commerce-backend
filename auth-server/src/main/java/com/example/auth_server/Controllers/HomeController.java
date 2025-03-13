@@ -1,5 +1,6 @@
 package com.example.auth_server.Controllers;
 
+import com.example.auth_server.dto.UserDTO;
 import com.example.auth_server.entity.User;
 import com.example.auth_server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ public class HomeController {
         return this.userService.getAll();
     }
 
-    @GetMapping("/current-user")
-    public String getLoggedInUser(Principal principal) {
-        return principal.getName();
-    }
-
     @GetMapping("/getEmailByUserId/{userId}")
     public String getEmailByUserId(@PathVariable String userId) {
         return userService.getEmailByUserId(userId);
+    }
+
+    @GetMapping("/getUserDetails/{userId}")
+    public UserDTO getUserDetails(@PathVariable String userId) {
+        return userService.getUserDetails(userId);
     }
 }

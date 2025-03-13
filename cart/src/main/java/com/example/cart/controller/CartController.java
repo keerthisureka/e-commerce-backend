@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Cart")
-@CrossOrigin(origins = "http://localhost:8090", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
+@CrossOrigin(origins = "*")
 public class CartController {
 
     @Autowired
@@ -26,13 +26,14 @@ public class CartController {
         return ResponseEntity.ok(cartService.removeFromCart(userId,productMerchantId));
     }
 
-    @PostMapping("/updateQuantity/{userId}/{productMerchantId}/")
+    @PostMapping("/updateQuantity/{userId}/{productMerchantId}")
     public ResponseEntity<ApiResponse<Long>> updateQuantity(@PathVariable String userId, @PathVariable String productMerchantId,@RequestParam Boolean increase) {
         return ResponseEntity.ok(cartService.updateQuantity(userId, productMerchantId, increase));
     }
 
     @GetMapping("/getAllCartItems/{userId}")
     public ResponseEntity<ApiResponse<List<CartItemDto>>> getAllCartItems(@PathVariable String userId) {
+        System.out.println(userId);
         return ResponseEntity.ok(cartService.getAllCartItems(userId));
     }
 

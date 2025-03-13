@@ -41,4 +41,11 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId).get();
         return user.getEmail();
     }
+
+    public UserDTO getUserDetails(String userId) {
+        User user = userRepository.findById(userId).get();
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(user, userDTO);
+        return userDTO;
+    }
 }

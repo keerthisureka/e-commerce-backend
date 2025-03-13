@@ -1,0 +1,1471 @@
+[{
+  "_id": {
+    "$oid": "67d1724dfa213e49230b16f9"
+  },
+  "name": "iPhone 14 Pro",
+  "imageUrl": "https://images-cdn.ubuy.co.in/633ff4156784f756b5031314-iphone-14-pro-max-256gb-gold.jpg",
+  "description": "Latest iPhone with A16 Bionic chip, improved camera system, and longer battery life",
+  "usp": "Pro-level camera system and powerful performance",
+  "merchantList": [
+    {
+      "merchantId": "b3838a5e-28e7-4516-ae3c-03c18b305f0a",
+      "merchantName": "Apple Store",
+      "price": 999.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 989.99
+    },
+    {
+      "merchantId": "317c3a01-075f-4d43-aa34-ab5124282083",
+      "merchantName": "Walmart",
+      "price": 979.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724dfa213e49230b16fa"
+  },
+  "name": "MacBook Pro M2",
+  "imageUrl": "https://nehruplacestore.com/media/catalog/product/cache/0e6347c1dae6e5c16051ed2d4037b3e8/m/a/macbook-pro-a2779-screen-replacement.jpg",
+  "description": "14-inch MacBook Pro with M2 Pro chip, Liquid Retina XDR display, and long battery life",
+  "usp": "Professional-grade performance in a portable package",
+  "merchantList": [
+    {
+      "merchantId": "b3838a5e-28e7-4516-ae3c-03c18b305f0a",
+      "merchantName": "Apple Store",
+      "price": 1999.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 1989.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724dfa213e49230b16fb"
+  },
+  "name": "Samsung Galaxy S23 Ultra",
+  "imageUrl": "https://m.media-amazon.com/images/I/71lD7eGdW-L.jpg",
+  "description": "Samsung's flagship smartphone with Dynamic AMOLED display and advanced camera system",
+  "usp": "Ultimate smartphone photography experience",
+  "merchantList": [
+    {
+      "merchantId": "a8e14839-d394-416b-be2a-8839515e620a",
+      "merchantName": "Samsung",
+      "price": 1199.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 1179.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 1189.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724dfa213e49230b16fc"
+  },
+  "name": "Sony WH-1000XM5",
+  "imageUrl": "https://www.headphonezone.in/cdn/shop/files/Headphone-Zone-Sony-WH-1000XM5-Blue-01.jpg",
+  "description": "Sony's flagship wireless noise-cancelling headphones with industry-leading noise cancellation",
+  "usp": "Industry-leading noise cancellation with premium sound quality",
+  "merchantList": [
+    {
+      "merchantId": "40761abe-99eb-4d5a-867a-9fa562b21c8a",
+      "merchantName": "Sony",
+      "price": 349.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 339.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 329.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b16fd"
+  },
+  "name": "NVIDIA GeForce RTX 4080",
+  "imageUrl": "https://m.media-amazon.com/images/I/71iaKN6nNrL.jpg",
+  "description": "NVIDIA's high-end graphics card with ray-tracing capabilities and DLSS support",
+  "usp": "Ultimate graphics performance for gaming and content creation",
+  "merchantList": [
+    {
+      "merchantId": "b794c453-b6b3-4eae-b9ca-b02dc73e72e5",
+      "merchantName": "NVIDIA",
+      "price": 1199.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 1189.99
+    },
+    {
+      "merchantId": "fa944922-efca-480d-ad26-c9fc106cee94",
+      "merchantName": "Micro Center",
+      "price": 1179.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b16fe"
+  },
+  "name": "PlayStation 5",
+  "imageUrl": "https://rukminim2.flixcart.com/image/850/1000/xif0q/gamingconsole/r/1/p/-original-imaghyyk5zct4duf.jpeg",
+  "description": "PlayStation 5 console with ultra-high-speed SSD and haptic feedback controller",
+  "usp": "Next-generation gaming with immersive haptic feedback",
+  "merchantList": [
+    {
+      "merchantId": "43d0c19a-91e2-4a4f-a933-2ba919e3687d",
+      "merchantName": "PlayStation Store",
+      "price": 499.99
+    },
+    {
+      "merchantId": "40761abe-99eb-4d5a-867a-9fa562b21c8a",
+      "merchantName": "Sony",
+      "price": 499.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 499.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b16ff"
+  },
+  "name": "Samsung QN90B Neo QLED 4K TV",
+  "imageUrl": "https://5.imimg.com/data5/SELLER/Default/2023/11/359602418/ZR/NJ/NL/124524813/samsung-qn90b-neo-qled-4k-smart-tv.jpg",
+  "description": "Samsung QLED 4K Smart TV with Quantum Processor and Object Tracking Sound",
+  "usp": "Brilliant picture quality with anti-reflection technology",
+  "merchantList": [
+    {
+      "merchantId": "a8e14839-d394-416b-be2a-8839515e620a",
+      "merchantName": "Samsung",
+      "price": 1799.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 1779.99
+    },
+    {
+      "merchantId": "a75cb713-d639-43fa-b737-1ebaece22dea",
+      "merchantName": "Target",
+      "price": 1769.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1700"
+  },
+  "name": "Apple Watch Series 8",
+  "imageUrl": "https://iplanet.one/cdn/shop/files/Apple_Watch_Series_8_LTE_41mm_Midnight_Aluminum_Midnight_Sport_Band_PDP_Image_Position-1__en-US_4b6ccd1d-dbfc-4589-a43b-3efcbe392819.jpg",
+  "description": "Apple's latest smartwatch with always-on display, ECG app, and fitness tracking",
+  "usp": "Advanced health and fitness features with stylish design",
+  "merchantList": [
+    {
+      "merchantId": "b3838a5e-28e7-4516-ae3c-03c18b305f0a",
+      "merchantName": "Apple Store",
+      "price": 399.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 389.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1701"
+  },
+  "name": "Google Pixel 7 Pro",
+  "imageUrl": "https://www.dxomark.com/wp-content/uploads/medias/post-126764/Google-Pixel-7-Pro_featured-image-packshot-review.jpg",
+  "description": "Google's flagship smartphone with advanced camera system and Tensor processor",
+  "usp": "Computational photography prowess with pure Android experience",
+  "merchantList": [
+    {
+      "merchantId": "3501e0ff-3035-4855-b57a-97427b123383",
+      "merchantName": "Google Store",
+      "price": 899.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 889.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1702"
+  },
+  "name": "Dell XPS 15",
+  "imageUrl": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-15-9510/media-gallery/xs9510t_cnb_05000ff090_bk.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=402&qlt=100,1&resMode=sharp2&size=402,402&chrss=full",
+  "description": "Dell XPS 15 laptop with 12th Gen Intel Core processors and NVIDIA graphics",
+  "usp": "Premium design with powerful performance",
+  "merchantList": [
+    {
+      "merchantId": "5816bda3-8315-4aa0-a1d0-a327be31fe81",
+      "merchantName": "Dell",
+      "price": 1999.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 1989.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1703"
+  },
+  "name": "Nintendo Switch OLED",
+  "imageUrl": "https://m.media-amazon.com/images/I/71XkT8UlZ-L.jpg",
+  "description": "Nintendo's popular gaming console with detachable Joy-Con controllers",
+  "usp": "Versatile gaming on-the-go or on the TV",
+  "merchantList": [
+    {
+      "merchantId": "95aaa0c3-ef74-460a-a01f-59453fee9c49",
+      "merchantName": "Nintendo Store",
+      "price": 349.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 344.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 339.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1704"
+  },
+  "name": "Bose Noise Cancelling Headphones 700",
+  "imageUrl": "https://avstore.in/cdn/shop/products/white_2_ae3f3fc7-8f48-4a8e-91ac-8377719d1f59.png?v=1637233745",
+  "description": "Bose premium noise-cancelling headphones with exceptional sound quality",
+  "usp": "Unrivaled microphone system with premium noise cancellation",
+  "merchantList": [
+    {
+      "merchantId": "5a9702f3-66e9-4d40-8794-329d3941efa5",
+      "merchantName": "Bose",
+      "price": 379.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 369.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1705"
+  },
+  "name": "Xbox Series X",
+  "imageUrl": "https://media.wired.com/photos/5fa5dc3dba670daaf8e97a8d/191:100/w_1280,c_limit/games_gear_series-x.jpg",
+  "description": "Microsoft's latest gaming console with 4K gaming capabilities",
+  "usp": "The most powerful Xbox console ever made",
+  "merchantList": [
+    {
+      "merchantId": "b53155ec-90f3-467d-a77d-c235875bfaa4",
+      "merchantName": "Xbox Store",
+      "price": 499.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 499.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 499.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1706"
+  },
+  "name": "LG OLED C2 4K TV",
+  "imageUrl": "https://media.us.lg.com/transform/ecomm-PDPGalleryThumbnail-350x350/851acb26-fdd5-4bba-bba9-c7c31d6f09fb/md08001967-DZ_03-jpg",
+  "description": "LG's OLED 4K Smart TV with self-lit pixels and AI-powered processor",
+  "usp": "Perfect black levels with vibrant colors for cinema-quality viewing",
+  "merchantList": [
+    {
+      "merchantId": "bcc049ca-4ffc-45db-869a-12e4e74d369a",
+      "merchantName": "LG",
+      "price": 1499.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 1489.99
+    },
+    {
+      "merchantId": "a75cb713-d639-43fa-b737-1ebaece22dea",
+      "merchantName": "Target",
+      "price": 1479.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1707"
+  },
+  "name": "Sony Alpha a7 IV",
+  "imageUrl": "https://gppro.in/wp-content/uploads/2024/11/SONY-ILCE-A7M4-BODY-GP002291-1.jpg",
+  "description": "Sony's premium mirrorless camera with full-frame sensor and 4K video recording",
+  "usp": "Professional image quality with advanced autofocus system",
+  "merchantList": [
+    {
+      "merchantId": "40761abe-99eb-4d5a-867a-9fa562b21c8a",
+      "merchantName": "Sony",
+      "price": 2499.99
+    },
+    {
+      "merchantId": "3372c805-e263-42de-808a-75e3ec3bec71",
+      "merchantName": "B&H Photo Video",
+      "price": 2489.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1708"
+  },
+  "name": "Apple iMac M1",
+  "imageUrl": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/imac-blue-selection-hero-202410?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1730232515462",
+  "description": "Apple's desktop computer with M1 chip, 24-inch 4.5K Retina display, and Magic Keyboard",
+  "usp": "All-in-one design with powerful performance",
+  "merchantList": [
+    {
+      "merchantId": "b3838a5e-28e7-4516-ae3c-03c18b305f0a",
+      "merchantName": "Apple Store",
+      "price": 1299.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 1289.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1709"
+  },
+  "name": "DJI Mavic 3 Pro",
+  "imageUrl": "https://hobitech.in/wp-content/uploads/2023/10/dji-mavic3-pro-Cine-rcpro-combo-img-2.jpg",
+  "description": "DJI's flagship drone with 4K camera, obstacle avoidance, and intelligent flight modes",
+  "usp": "Professional aerial photography and videography",
+  "merchantList": [
+    {
+      "merchantId": "e8fe836f-035a-4280-8911-b3f69ed912fd",
+      "merchantName": "DJI",
+      "price": 2199.99
+    },
+    {
+      "merchantId": "3372c805-e263-42de-808a-75e3ec3bec71",
+      "merchantName": "B&H Photo Video",
+      "price": 2189.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 2179.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b170a"
+  },
+  "name": "Razer Blade 15",
+  "imageUrl": "https://m.media-amazon.com/images/I/61WdX6qqDqL.jpg",
+  "description": "Razer gaming laptop with high refresh rate display and NVIDIA graphics",
+  "usp": "Premium gaming laptop with powerful performance in a sleek design",
+  "merchantList": [
+    {
+      "merchantId": "9a57b69b-1eb0-465c-bf05-88ff0449201c",
+      "merchantName": "Razer",
+      "price": 2499.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 2489.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b170b"
+  },
+  "name": "Samsung Galaxy Tab S8 Ultra",
+  "imageUrl": "https://images.samsung.com/in/galaxy-tab-s8/feature/buy/GalaxyTab_S8Ultra_AllColorKV_WithSPen_MO.jpg",
+  "description": "Samsung's high-end tablet with Super AMOLED display and S Pen support",
+  "usp": "Large immersive display with powerful multitasking capabilities",
+  "merchantList": [
+    {
+      "merchantId": "a8e14839-d394-416b-be2a-8839515e620a",
+      "merchantName": "Samsung",
+      "price": 1099.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 1089.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 1079.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b170c"
+  },
+  "name": "GoPro HERO11 Black",
+  "imageUrl": "https://m.media-amazon.com/images/I/71JErNrJWvL.jpg",
+  "description": "GoPro's flagship action camera with 5.3K video, HyperSmooth stabilization, and waterproof design",
+  "usp": "Professional-quality action footage with incredible stabilization",
+  "merchantList": [
+    {
+      "merchantId": "a64a68f1-bbc7-4230-b1b1-93dcd017098e",
+      "merchantName": "GoPro",
+      "price": 499.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 489.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 479.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b170d"
+  },
+  "name": "AMD Ryzen 9 9900X",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuHFKiUUXFN6zHwH3DsKTsNfyh5JMjcUnf-w&s",
+  "description": "AMD's high-performance desktop processor with 16 cores and 32 threads",
+  "usp": "Exceptional multi-core performance for demanding workloads",
+  "merchantList": [
+    {
+      "merchantId": "50a708d0-8a6f-4a93-a5df-185d5e89073b",
+      "merchantName": "AMD",
+      "price": 599.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 589.99
+    },
+    {
+      "merchantId": "fa944922-efca-480d-ad26-c9fc106cee94",
+      "merchantName": "Micro Center",
+      "price": 579.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b170e"
+  },
+  "name": "Logitech G502 LIGHTSPEED",
+  "imageUrl": "https://m.media-amazon.com/images/I/61sLuO6LiAL.jpg",
+  "description": "Logitech's premium wireless gaming mouse with HERO sensor and programmable buttons",
+  "usp": "Precision gaming with customizable weight and balance",
+  "merchantList": [
+    {
+      "merchantId": "e20a95f4-295a-4f25-8d5d-315779a3591a",
+      "merchantName": "Logitech",
+      "price": 149.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 144.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 139.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b170f"
+  },
+  "name": "iPad Pro M1",
+  "imageUrl": "https://itradeit.in/wp-content/uploads/2023/09/product_specs_silver_01-768x768.jpg",
+  "description": "Apple's tablet with M1 chip, 12.9-inch Liquid Retina XDR display, and Apple Pencil support",
+  "usp": "Desktop-class performance in a portable tablet",
+  "merchantList": [
+    {
+      "merchantId": "b3838a5e-28e7-4516-ae3c-03c18b305f0a",
+      "merchantName": "Apple Store",
+      "price": 1099.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 1089.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 1079.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1710"
+  },
+  "name": "Intel Core i9-13900K",
+  "imageUrl": "https://m.media-amazon.com/images/I/51CsbchCa-L.jpg",
+  "description": "Intel's high-performance desktop processor with 16 cores and advanced overclocking capabilities",
+  "usp": "Extreme performance for gaming and content creation",
+  "merchantList": [
+    {
+      "merchantId": "f18de23e-a430-4e36-873d-d21751eb992d",
+      "merchantName": "Intel",
+      "price": 599.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 589.99
+    },
+    {
+      "merchantId": "fa944922-efca-480d-ad26-c9fc106cee94",
+      "merchantName": "Micro Center",
+      "price": 579.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1711"
+  },
+  "name": "Meta Quest 3",
+  "imageUrl": "https://rukminim3.flixcart.com/image/850/1000/xif0q/motion-controller/6/i/3/quest-3-vr-headset-128-gb-meta-original-imah8bd4cgjzbret.jpeg?q=90&crop=false",
+  "description": "Meta's advanced VR headset with high-resolution display and immersive controllers",
+  "usp": "Immersive standalone VR experience without a PC",
+  "merchantList": [
+    {
+      "merchantId": "18fba38c-133d-488d-bb2e-ddc50e798318",
+      "merchantName": "Oculus",
+      "price": 499.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 489.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 479.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1712"
+  },
+  "name": "Roku Ultra HD",
+  "imageUrl": "https://m.media-amazon.com/images/I/71zgNLOckwL.jpg",
+  "description": "Roku's streaming device with 4K HDR support and voice remote",
+  "usp": "Premium streaming experience with voice search and private listening",
+  "merchantList": [
+    {
+      "merchantId": "1a186185-7027-4893-9f5a-c852c3073a60",
+      "merchantName": "Roku",
+      "price": 99.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 94.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 89.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1713"
+  },
+  "name": "Philips Hue Starter Kit",
+  "imageUrl": "https://www.assets.signify.com/is/image/Signify/8719514291515-929002468811-Philips-Hue_WCA-9W-A60-E27-3set-EUR-PMO-RTP",
+  "description": "Philips Hue smart lighting starter kit with bridge and color-changing bulbs",
+  "usp": "Personalized smart lighting for every room and mood",
+  "merchantList": [
+    {
+      "merchantId": "23154d85-663b-4a87-b002-062a159c5e74",
+      "merchantName": "Philips",
+      "price": 199.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 194.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 189.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1714"
+  },
+  "name": "Brother MFC-L2750DW",
+  "imageUrl": "https://www.brother.eu/-/media/product-images/devices/printers/mfc/mfcl2750dw/mfcl2750dw_main.png?rev=06292868f5fe4afd907652c1f505b552",
+  "description": "Brother's all-in-one wireless laser printer with automatic document feeder",
+  "usp": "Efficient printing, scanning, copying, and faxing for home offices",
+  "merchantList": [
+    {
+      "merchantId": "2d8c49cd-4f95-434e-a935-7176d65e4282",
+      "merchantName": "Brother",
+      "price": 299.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 294.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 289.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d1724efa213e49230b1715"
+  },
+  "name": "Epson EcoTank ET-2850",
+  "imageUrl": "https://5.imimg.com/data5/SELLER/Default/2023/10/356196939/ZE/HQ/FW/48561884/epson-ecotank-et-2850-all-in-one-supertank-printer.png",
+  "description": "Epson EcoTank color printer with super-high-capacity ink tanks for lower printing costs",
+  "usp": "Cartridge-free printing with up to 2 years of ink included",
+  "merchantList": [
+    {
+      "merchantId": "302db8a7-6003-4d72-bd8a-1b20411ac47b",
+      "merchantName": "Epson",
+      "price": 349.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 344.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 339.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17420fa213e49230b1716"
+  },
+  "name": "Corsair K95 RGB Platinum XT",
+  "imageUrl": "https://detec.in/cdn/shop/files/38_ac18b90e-bfaf-44d9-95f6-5853f24ed17d.jpg?v=1730981826",
+  "description": "Corsair mechanical gaming keyboard with RGB backlight and dedicated media controls",
+  "usp": "Premium mechanical keyboard with customizable RGB lighting",
+  "merchantList": [
+    {
+      "merchantId": "3bf53acc-9c88-4757-b7a1-5b47f2999174",
+      "merchantName": "Corsair",
+      "price": 199.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 194.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 189.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17420fa213e49230b1717"
+  },
+  "name": "HP Spectre x360",
+  "imageUrl": "https://m.media-amazon.com/images/I/71-He6IYBKL.jpg",
+  "description": "HP Spectre x360 convertible laptop with touchscreen display and Intel processor",
+  "usp": "Versatile 2-in-1 laptop with premium design",
+  "merchantList": [
+    {
+      "merchantId": "3f979dea-0cb1-418f-9069-940e9142cd7d",
+      "merchantName": "HP",
+      "price": 1499.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 1489.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17420fa213e49230b1718"
+  },
+  "name": "ASUS ROG Zephyrus G14",
+  "imageUrl": "https://m.media-amazon.com/images/I/81x+1vl1kCL.jpg",
+  "description": "ASUS gaming laptop with high refresh rate display and RTX graphics",
+  "usp": "Compact gaming powerhouse with exceptional battery life",
+  "merchantList": [
+    {
+      "merchantId": "3fc76339-7c1e-46b0-aa62-68398916c539",
+      "merchantName": "ASUS",
+      "price": 1699.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 1689.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17420fa213e49230b1719"
+  },
+  "name": "Anker PowerCore 26800",
+  "imageUrl": "https://m.media-amazon.com/images/I/51cnqxhcjKL.jpg",
+  "description": "Anker portable charger with high capacity and fast charging support",
+  "usp": "High-capacity power bank with fast charging technology",
+  "merchantList": [
+    {
+      "merchantId": "4305bfb1-7d47-4799-8ee1-908afdc8e381",
+      "merchantName": "Anker",
+      "price": 69.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 64.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 59.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17420fa213e49230b171a"
+  },
+  "name": "Sennheiser MOMENTUM True Wireless 3",
+  "imageUrl": "https://media.graphassets.com/YNhCcxj0TICKRgBCCcHj",
+  "description": "Sennheiser wireless earbuds with active noise cancellation and premium sound",
+  "usp": "Audiophile-grade sound quality in wireless earbuds",
+  "merchantList": [
+    {
+      "merchantId": "45621745-eccf-4991-b158-f95d8e5673b1",
+      "merchantName": "Sennheiser",
+      "price": 249.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 244.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 239.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17420fa213e49230b171b"
+  },
+  "name": "Zotac Gaming GeForce RTX 4070",
+  "imageUrl": "https://m.media-amazon.com/images/I/61o3XC2O9ML.jpg",
+  "description": "Zotac gaming graphics card with NVIDIA GPU and advanced cooling",
+  "usp": "Compact design with powerful graphics performance",
+  "merchantList": [
+    {
+      "merchantId": "4a738b67-4f05-4db4-a138-6b05b00eb79d",
+      "merchantName": "Zotac",
+      "price": 599.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 589.99
+    },
+    {
+      "merchantId": "fa944922-efca-480d-ad26-c9fc106cee94",
+      "merchantName": "Micro Center",
+      "price": 579.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17420fa213e49230b171c"
+  },
+  "name": "Hisense U8H 4K TV",
+  "imageUrl": "https://images-cdn.ubuy.co.in/6685d24520171714e97fadd7-hisense-65-class-premiun-u8h-series.jpg",
+  "description": "Hisense 4K Smart TV with Dolby Vision HDR and voice control",
+  "usp": "Premium features at a competitive price",
+  "merchantList": [
+    {
+      "merchantId": "4deaf454-2b9a-4999-9168-fcff110bdd86",
+      "merchantName": "Hisense",
+      "price": 999.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 989.99
+    },
+    {
+      "merchantId": "a75cb713-d639-43fa-b737-1ebaece22dea",
+      "merchantName": "Target",
+      "price": 979.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b171d"
+  },
+  "name": "Harman Kardon Aura Studio 3",
+  "imageUrl": "https://eshopy.in/wp-content/uploads/2023/04/71ecJTrTpUL._SL1500_.jpg",
+  "description": "Harman Kardon premium smart speaker with voice control and rich sound",
+  "usp": "Iconic design with immersive 360-degree sound",
+  "merchantList": [
+    {
+      "merchantId": "6b9ee2a9-3dac-4d88-85d0-7fdd113d21b9",
+      "merchantName": "Harman Kardon",
+      "price": 299.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 294.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 289.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b171e"
+  },
+  "name": "OnePlus 11",
+  "imageUrl": "https://m.media-amazon.com/images/I/61amb0CfMGL.jpg",
+  "description": "OnePlus flagship smartphone with Hasselblad camera system and fast charging",
+  "usp": "Flagship performance with superfast charging",
+  "merchantList": [
+    {
+      "merchantId": "6be5e987-b1cb-4cb2-9fe8-ce26d5b2ab9d",
+      "merchantName": "OnePlus",
+      "price": 899.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 889.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b171f"
+  },
+  "name": "JBL Charge 5",
+  "imageUrl": "https://m.media-amazon.com/images/I/71N8si9jomL.jpg",
+  "description": "JBL portable Bluetooth speaker with waterproof design and powerful sound",
+  "usp": "Powerful sound in a durable, waterproof design",
+  "merchantList": [
+    {
+      "merchantId": "8a8c4e3b-beca-4777-8d2e-2caa62e95f6b",
+      "merchantName": "JBL",
+      "price": 179.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 174.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 169.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1720"
+  },
+  "name": "MSI Aegis RS",
+  "imageUrl": "https://m.media-amazon.com/images/I/81QR3ILVAQL.jpg",
+  "description": "MSI gaming desktop with high-performance components and RGB lighting",
+  "usp": "High-performance gaming PC with customizable RGB lighting",
+  "merchantList": [
+    {
+      "merchantId": "a24d1d10-6f41-4f66-a54f-e16c8ebc30ab",
+      "merchantName": "MSI",
+      "price": 1999.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 1989.99
+    },
+    {
+      "merchantId": "fa944922-efca-480d-ad26-c9fc106cee94",
+      "merchantName": "Micro Center",
+      "price": 1979.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1721"
+  },
+  "name": "Lenovo ThinkPad X1 Carbon",
+  "imageUrl": "https://images-cdn.ubuy.co.in/6351b7e7bf169e04791c9e30-lenovo-thinkpad-x1-carbon-gen-10-intel.jpg",
+  "description": "Lenovo ThinkPad business laptop with security features and long battery life",
+  "usp": "Premium business laptop with legendary durability",
+  "merchantList": [
+    {
+      "merchantId": "aa9e0f09-c607-4c07-9f13-54a920afd392",
+      "merchantName": "Lenovo",
+      "price": 1499.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 1489.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1722"
+  },
+  "name": "Panasonic LUMIX G9",
+  "imageUrl": "https://futureforward.in/images/thumbs/009/0096611_panasonic-lumix-dc-g9-mirrorless-micro-four-thirds-digital-camera-with-12-60mm-lens_600.jpeg",
+  "description": "Panasonic LUMIX mirrorless camera with 4K video recording and image stabilization",
+  "usp": "Exceptional video quality with advanced stabilization",
+  "merchantList": [
+    {
+      "merchantId": "c963f22d-d30a-46be-b974-f8fdec96a817",
+      "merchantName": "Panasonic",
+      "price": 1299.99
+    },
+    {
+      "merchantId": "3372c805-e263-42de-808a-75e3ec3bec71",
+      "merchantName": "B&H Photo Video",
+      "price": 1289.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1723"
+  },
+  "name": "Acer Predator X27",
+  "imageUrl": "https://i.pcmag.com/imagery/reviews/074fs6JJYgfDgoy3QwAHelw-1.fit_lim.size_1200x630.v1569469960.jpg",
+  "description": "Acer Predator gaming monitor with high refresh rate and low response time",
+  "usp": "Ultimate gaming experience with 4K resolution and high refresh rate",
+  "merchantList": [
+    {
+      "merchantId": "cf89e2d0-85f1-4433-bd05-6d4fcb486158",
+      "merchantName": "Acer",
+      "price": 899.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 889.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1724"
+  },
+  "name": "Gigabyte Z790 AORUS MASTER",
+  "imageUrl": "https://computechstore.in/wp-content/uploads/2023/11/13-145-476-01.jpg",
+  "description": "Gigabyte gaming motherboard with advanced features and RGB lighting",
+  "usp": "Premium motherboard with excellent overclocking capabilities",
+  "merchantList": [
+    {
+      "merchantId": "d1f1d959-c692-414a-890e-35924849acdc",
+      "merchantName": "Gigabyte",
+      "price": 499.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 489.99
+    },
+    {
+      "merchantId": "fa944922-efca-480d-ad26-c9fc106cee94",
+      "merchantName": "Micro Center",
+      "price": 479.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1725"
+  },
+  "name": "SteelSeries Arctis 7",
+  "imageUrl": "https://images-cdn.ubuy.co.in/6616bcf01eacbc747b4b3ef5-steelseries-arctis-7-lossless-wireless.jpg",
+  "description": "SteelSeries gaming headset with immersive sound and comfortable design",
+  "usp": "Award-winning comfort with immersive gaming audio",
+  "merchantList": [
+    {
+      "merchantId": "d6ffcbde-6947-4fe2-9d31-35a438649d54",
+      "merchantName": "SteelSeries",
+      "price": 149.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 144.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 139.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1726"
+  },
+  "name": "HyperX Alloy Origins Core",
+  "imageUrl": "https://varietyinfotech.com/wp-content/uploads/HyperX-Alloy-Origins-Core-PBT-Blue-1-1.jpg",
+  "description": "HyperX gaming keyboard with mechanical switches and RGB backlighting",
+  "usp": "Compact design with premium build quality and performance",
+  "merchantList": [
+    {
+      "merchantId": "d91fff55-101d-4059-bb36-3778e8c98b37",
+      "merchantName": "HyperX",
+      "price": 99.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 94.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 89.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1727"
+  },
+  "name": "EVGA SuperNOVA 850 G5",
+  "imageUrl": "https://m.media-amazon.com/images/I/81FkcmclL1L.jpg",
+  "description": "EVGA high-performance power supply with modular cables and 80 PLUS certification",
+  "usp": "Reliable power delivery with exceptional efficiency",
+  "merchantList": [
+    {
+      "merchantId": "dce004f5-724f-4901-b227-08ae88a1bae7",
+      "merchantName": "EVGA",
+      "price": 149.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 144.99
+    },
+    {
+      "merchantId": "fa944922-efca-480d-ad26-c9fc106cee94",
+      "merchantName": "Micro Center",
+      "price": 139.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1728"
+  },
+  "name": "TCL 65-inch 6-Series 4K TV",
+  "imageUrl": "https://images.webfronts.com/cache/frsbgihdnjqm.png?imgeng=/w_500/h_500/m_letterbox_ffffff_100",
+  "description": "TCL 4K Smart TV with Dolby Vision HDR and Google TV interface",
+  "usp": "Premium features at an affordable price",
+  "merchantList": [
+    {
+      "merchantId": "e12e126c-903b-47ac-95c2-b8de897aa5cf",
+      "merchantName": "TCL",
+      "price": 799.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 789.99
+    },
+    {
+      "merchantId": "a75cb713-d639-43fa-b737-1ebaece22dea",
+      "merchantName": "Target",
+      "price": 779.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b1729"
+  },
+  "name": "Apple AirPods Pro (2nd Gen)",
+  "imageUrl": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-pro-2-hero-select-202409_FMT_WHH?wid=750&hei=556&fmt=jpeg&qlt=90&.v=1724041668836",
+  "description": "Apple AirPods Pro with active noise cancellation and transparency mode",
+  "usp": "Immersive sound with active noise cancellation",
+  "merchantList": [
+    {
+      "merchantId": "b3838a5e-28e7-4516-ae3c-03c18b305f0a",
+      "merchantName": "Apple Store",
+      "price": 249.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 239.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 229.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b172a"
+  },
+  "name": "Samsung Galaxy Watch 6",
+  "imageUrl": "https://m.media-amazon.com/images/I/71162EQnpKL.jpg",
+  "description": "Samsung Galaxy Watch with health tracking features and long battery life",
+  "usp": "Advanced health tracking with premium design",
+  "merchantList": [
+    {
+      "merchantId": "a8e14839-d394-416b-be2a-8839515e620a",
+      "merchantName": "Samsung",
+      "price": 349.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 339.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 329.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b172b"
+  },
+  "name": "Microsoft Surface Laptop 5",
+  "imageUrl": "https://cdn.jiostore.online/v2/jmd-asp/jdprod/wrkr/products/pictures/item/free/original/UxoVZaeb7o-microsoft-qzi-00023-laptop-493179012-i-1-1200wx1200h.jpeg",
+  "description": "Microsoft Surface laptop with touchscreen display and long battery life",
+  "usp": "Elegant design with performance and versatility",
+  "merchantList": [
+    {
+      "merchantId": "b53155ec-90f3-467d-a77d-c235875bfaa4",
+      "merchantName": "Xbox Store",
+      "price": 1299.99
+    },
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 1289.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b172c"
+  },
+  "name": "Canon EOS 5D Mark IV",
+  "imageUrl": "https://jsdpro.com/cdn/shop/products/81naihI0PmL._SL1500_770x700.jpg?v=1533817563",
+  "description": "Canon professional DSLR camera with high-resolution sensor and 4K video recording",
+  "usp": "Professional-grade imaging for serious photographers",
+  "merchantList": [
+    {
+      "merchantId": "3372c805-e263-42de-808a-75e3ec3bec71",
+      "merchantName": "B&H Photo Video",
+      "price": 2499.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 2489.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17421fa213e49230b172d"
+  },
+  "name": "WD My Passport SSD 1TB",
+  "imageUrl": "https://m.media-amazon.com/images/I/81y8P1up-PL.jpg",
+  "description": "Western Digital external SSD with high-speed data transfer and compact design",
+  "usp": "Portable storage with blazing-fast data transfer speeds",
+  "merchantList": [
+    {
+      "merchantId": "2cec77d7-4638-4dc6-8644-317449cb8dc6",
+      "merchantName": "Newegg",
+      "price": 149.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 144.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 139.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17459fa213e49230b172e"
+  },
+  "name": "Fitbit Charge 5",
+  "imageUrl": "https://m.media-amazon.com/images/I/61Llpu4OGYL.jpg",
+  "description": "Fitbit fitness tracker with heart rate monitoring and sleep tracking",
+  "usp": "Advanced health tracking in a sleek design",
+  "merchantList": [
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 149.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 144.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17459fa213e49230b172f"
+  },
+  "name": "Sonos One (Gen 2)",
+  "imageUrl": "https://m.media-amazon.com/images/I/71dJ0HXTD0L.jpg",
+  "description": "Sonos wireless speaker with multi-room audio support and voice control",
+  "usp": "Rich, room-filling sound with voice control",
+  "merchantList": [
+    {
+      "merchantId": "40761abe-99eb-4d5a-867a-9fa562b21c8a",
+      "merchantName": "Sony",
+      "price": 219.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 214.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 209.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17459fa213e49230b1730"
+  },
+  "name": "SanDisk Extreme PRO 256GB",
+  "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwNmDU1g8Ci4n42YG4VPa4FKo7yAbv3xcz1Q&s",
+  "description": "SanDisk high-speed memory card for cameras and smartphones",
+  "usp": "Reliable, high-speed storage for professional use",
+  "merchantList": [
+    {
+      "merchantId": "3372c805-e263-42de-808a-75e3ec3bec71",
+      "merchantName": "B&H Photo Video",
+      "price": 49.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 44.99
+    },
+    {
+      "merchantId": "0f279b5b-bcc7-4de8-bc83-83a91c6366b2",
+      "merchantName": "Best Buy",
+      "price": 39.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17459fa213e49230b1731"
+  },
+  "name": "KEF LSX Wireless Speakers",
+  "imageUrl": "https://avstore.in/cdn/shop/products/1.AVStore-KEF-LSX-II-Angled-Front-Hero-Cobalt-Blue.jpg?v=1667462099",
+  "description": "KEF wireless bookshelf speakers with Bluetooth connectivity and rich sound",
+  "usp": "Audiophile-quality sound in a compact wireless system",
+  "merchantList": [
+    {
+      "merchantId": "3372c805-e263-42de-808a-75e3ec3bec71",
+      "merchantName": "B&H Photo Video",
+      "price": 1199.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 1189.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+},
+{
+  "_id": {
+    "$oid": "67d17459fa213e49230b1732"
+  },
+  "name": "Nikon Z6 II",
+  "imageUrl": "https://x.imastudent.com/content/0022096_nikon-z6-ii-mirrorless-camera-body-only-with-extra-battery-en-el15c_500.jpeg",
+  "description": "Nikon mirrorless camera with full-frame sensor and 4K video recording",
+  "usp": "Professional-grade mirrorless camera with exceptional low-light performance",
+  "merchantList": [
+    {
+      "merchantId": "3372c805-e263-42de-808a-75e3ec3bec71",
+      "merchantName": "B&H Photo Video",
+      "price": 1999.99
+    },
+    {
+      "merchantId": "86a79319-a85a-454c-87e0-e42f863773b0",
+      "merchantName": "Amazon",
+      "price": 1989.99
+    }
+  ],
+  "_class": "com.example.products.entity.Product"
+}]

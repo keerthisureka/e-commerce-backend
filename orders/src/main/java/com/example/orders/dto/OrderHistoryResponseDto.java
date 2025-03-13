@@ -8,4 +8,5 @@ import java.util.List;
 public class OrderHistoryResponseDto {
     private String id; //order id
     private List<OrderItemsResponseDto> orderItemsResponseDtoList;
+    private Double totalPrice;
 }
