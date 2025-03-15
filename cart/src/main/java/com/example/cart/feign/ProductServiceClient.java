@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "product-service", url = "http://localhost:8083")
 public interface ProductServiceClient {
 
-    @GetMapping("/getStock/{productMerchantId}")
+    @GetMapping("/Products/getStock/{productMerchantId}")
     public ApiResponse<Long> getStock(@PathVariable String productMerchantId);
 
 }

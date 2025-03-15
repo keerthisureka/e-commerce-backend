@@ -44,10 +44,11 @@ public class MerchantServiceImpl implements MerchantService {
 
     @Override
     public ApiResponse<Boolean> updateMerchantStock(String productMerchantId, Long quantity) {
+        log.info("Reached merchant stock update");
         if(productMerchantRepository.existsById(productMerchantId)) {
             ProductMerchant productMerchant = productMerchantRepository.findById(productMerchantId).get();
             Long currentStock = productMerchant.getStock();
-            if (currentStock - quantity > 0) {
+            if (currentStock - quantity >= 0) {
                 productMerchant.setStock(currentStock - quantity);
             } else {
                 return new ApiResponse<>(HttpStatus.BAD_REQUEST, "Out Of Stock", false);

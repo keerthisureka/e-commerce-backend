@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface ProductServiceClient {
 
     @PostMapping("/Merchant/updateMerchantStock/{productMerchantId}/{quantity}")
-    public ResponseEntity<ApiResponse<Boolean>> updateMerchantStock(@PathVariable String productMerchantId, @PathVariable Long quantity);
+    public ApiResponse<Boolean> updateMerchantStock(@PathVariable String productMerchantId, @PathVariable Long quantity);
 
 }

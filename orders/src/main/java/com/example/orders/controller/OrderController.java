@@ -3,6 +3,7 @@ package com.example.orders.controller;
 import com.example.orders.dto.ApiResponse;
 import com.example.orders.dto.OrderHistoryResponseDto;
 import com.example.orders.feign.CartServiceClient;
+import com.example.orders.feign.ProductServiceClient;
 import com.example.orders.services.Impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ public class OrderController {
 
     @Autowired
     private CartServiceClient cartServiceClient;
+
+    @Autowired
+    private ProductServiceClient productServiceClient;
 
     @PostMapping("/addToOrderHistory/{userId}/{totalPrice}")
     public ResponseEntity<ApiResponse<Boolean>> addToOrderHistory(@PathVariable String userId, @PathVariable Double totalPrice) {

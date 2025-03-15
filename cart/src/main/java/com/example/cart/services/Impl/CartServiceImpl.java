@@ -135,14 +135,22 @@ public class CartServiceImpl implements CartService {
     @Transactional
     public ApiResponse<Long> updateQuantity(String userId, String productMerchantId, Boolean increase) {
         try {
+            log.info("Updating quantity for userId: {}, productMerchantId: {}, increase: {}", userId, productMerchantId, increase);
+
             Cart cart = cartRepository.findByUserId(userId)
-                    .orElseThrow(() -> new RuntimeException("Cart not found"));
+                    .orElseThrow(() -> {
+                        log.error("Cart not found for userId: {}", userId);
+                        return new RuntimeException("Cart not found");
+                    });
+
+            log.info("Cart retrieved successfully for userId: {}", userId);
 
             Optional<CartItem> optionalCartItem = cart.getItems().stream()
                     .filter(item -> item.getProductMerchantId().equals(productMerchantId))
                     .findFirst();
 
             if (!optionalCartItem.isPresent()) {
+                log.error("Cart item not found for productMerchantId: {}", productMerchantId);
                 return new ApiResponse<>(HttpStatus.NOT_FOUND, "Cart item not found", null);
             }
 
@@ -150,40 +158,56 @@ public class CartServiceImpl implements CartService {
             long currentQuantity = cartItemToUpdate.getQuantity();
             long newQuantity = currentQuantity;
 
+            log.info("Current quantity of productMerchantId {} is {}", productMerchantId, currentQuantity);
+
             if (!increase) {
                 if (currentQuantity == 1) {
                     cart.getItems().remove(cartItemToUpdate);
                     newQuantity = 0;
+                    log.info("Reduced quantity, cart item removed for productMerchantId {}", productMerchantId);
                 } else {
-                    newQuantity--;
+                    newQuantity = newQuantity - 1;
+                    log.info("Decreased quantity to {} for productMerchantId {}", newQuantity, productMerchantId);
                 }
             } else {
-                Long stock = productServiceClient.getStock(productMerchantId).getData(); // Get available stock
+                log.info("Fetching stock for productMerchantId {}", productMerchantId);
+                Long stock = productServiceClient.getStock(productMerchantId).getData();
+                log.info("Available stock for productMerchantId {} is {}", productMerchantId, stock);
+
                 if (currentQuantity + 1 > stock) {
+                    log.warn("Max stock reached for productMerchantId {}. Available: {}, Requested: {}", productMerchantId, stock, currentQuantity + 1);
                     return new ApiResponse<>(HttpStatus.BAD_REQUEST, "Max stock reached: " + stock + " units", -1L);
                 }
-                newQuantity++;
+
+                newQuantity = newQuantity + 1;
+                log.info("Increased quantity to {} for productMerchantId {}", newQuantity, productMerchantId);
             }
 
             if (newQuantity > 0) {
+                log.info("Updating cart item quantity in DB. New quantity: {}", newQuantity);
                 cartItemToUpdate.setQuantity(newQuantity);
             }
 
-
+            log.info("Calculating updated total price for cart");
             double updatedTotal = cart.getItems().stream()
                     .mapToDouble(item -> item.getPrice() * item.getQuantity())
                     .sum();
             cart.setTotalPrice(updatedTotal);
 
+            log.info("Saving updated cart to database");
             cartRepository.save(cart);
 
+            log.info("Quantity updated successfully for productMerchantId {}. New quantity: {}", productMerchantId, newQuantity);
             return new ApiResponse<>(HttpStatus.OK, "Quantity updated successfully", newQuantity);
         } catch (RuntimeException e) {
+            log.error("RuntimeException occurred: {}", e.getMessage(), e);
             return new ApiResponse<>(HttpStatus.NOT_FOUND, e.getMessage(), null);
         } catch (Exception e) {
+            log.error("Unexpected exception occurred while updating quantity", e);
             return new ApiResponse<>(HttpStatus.CONFLICT, "Failed to update quantity", null);
         }
     }
+
 
     @Override
     public ApiResponse<List<CartItemDto>> getAllCartItems(String userId) {
