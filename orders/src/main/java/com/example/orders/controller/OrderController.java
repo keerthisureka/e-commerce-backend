@@ -25,23 +25,23 @@ public class OrderController {
     @Autowired
     private ProductServiceClient productServiceClient;
 
-    @PostMapping("/addToOrderHistory/{userId}/{totalPrice}")
-    public ResponseEntity<ApiResponse<Boolean>> addToOrderHistory(@PathVariable String userId, @PathVariable Double totalPrice) {
-        return ResponseEntity.ok(orderService.addOrder(userId,totalPrice));
+    @PostMapping("/addToOrderHistory/{totalPrice}")
+    public ResponseEntity<ApiResponse<Boolean>> addToOrderHistory(@RequestHeader("X-User-Id") String userId, @PathVariable Double totalPrice) {
+        return ResponseEntity.ok(orderService.addOrder(userId, totalPrice));
     }
 
-    @DeleteMapping("/clearCart/{userId}")
-    public ResponseEntity<ApiResponse<Boolean>> clearCart(@PathVariable String userId) {
+    @DeleteMapping("/clearCart")
+    public ResponseEntity<ApiResponse<Boolean>> clearCart(@RequestHeader("X-User-Id") String userId) {
         return ResponseEntity.ok(cartServiceClient.clearCart(userId));
     }
 
-    @GetMapping("/getAllOrders/{userId}")
-    public ResponseEntity<ApiResponse<List<OrderHistoryResponseDto>>> getAllOrders(@PathVariable String userId) {
+    @GetMapping("/getAllOrders")
+    public ResponseEntity<ApiResponse<List<OrderHistoryResponseDto>>> getAllOrders(@RequestHeader("X-User-Id") String userId) {
         return ResponseEntity.ok(orderService.getAllOrders(userId));
     }
 
-    @GetMapping("/getEmptyOrderId/{userId}")
-    public ResponseEntity<ApiResponse<String>> getEmptyOrderHistoryId(@PathVariable String userId) {
+    @GetMapping("/getEmptyOrderId")
+    public ResponseEntity<ApiResponse<String>> getEmptyOrderHistoryId(@RequestHeader("X-User-Id") String userId) {
         return ResponseEntity.ok(orderService.createEmptyOrderHistory(userId));
     }
  }

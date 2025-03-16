@@ -17,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthServiceImpl implements AuthService {
 
@@ -35,6 +37,40 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private UserRepository userRepository;
 
+//    @Override
+//    public ResponseEntity<JWTResponse> doAuthenticate(JWTRequest request) {
+//        String email = request.getEmail();
+//        String password = request.getPassword();
+//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
+//        try {
+//            manager.authenticate(authenticationToken);
+//        } catch (BadCredentialsException e) {
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//        }
+//        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+//        // Generate token only if not present in Redis (or if the present token is invalid)
+//        String token = jwtUtils.getOrGenerateToken(userDetails);
+//        JWTResponse response = new JWTResponse();
+//        response.setJwtToken(token);
+//        return ResponseEntity.ok(response);
+//    }
+
+//    @Override
+//    public ResponseEntity<JWTResponse> createUser(UserDTO userDTO) {
+//        // Check if a user with the provided email already exists
+//        Optional<User> existingUser = userRepository.findByEmail(userDTO.getEmail());
+//        if (existingUser.isPresent()) {
+//            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+//        }
+//        // Create new user if not existing
+//        User user = userService.createUser(userDTO);
+//        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+//        String token = jwtUtils.getOrGenerateToken(userDetails);
+//        JWTResponse response = new JWTResponse();
+//        response.setJwtToken(token);
+//        return ResponseEntity.ok(response);
+//    }
+
     @Override
     public ResponseEntity<JWTResponse> doAuthenticate(JWTRequest request) {
         String email = request.getEmail();
@@ -42,41 +78,34 @@ public class AuthServiceImpl implements AuthService {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
         try {
-
             manager.authenticate(authenticationToken);
-
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
-        System.out.println(userDetails);
-        String token = this.jwtUtils.generateToken(userDetails);
-
+        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+        String token = jwtUtils.getOrGenerateToken(userDetails);
         JWTResponse response = new JWTResponse();
         response.setJwtToken(token);
-        response.setUserId(userRepository.findByEmail(email).get().getUserId());
-
         return ResponseEntity.ok(response);
     }
 
+
+    @Override
     public ResponseEntity<JWTResponse> createUser(UserDTO userDTO) {
-        System.out.println(userDTO);
+        Optional<User> existingUser = userRepository.findByEmail(userDTO.getEmail());
+        if (existingUser.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        }
+
+        // Create and save user
         User user = userService.createUser(userDTO);
-
-        userDTO.setEmail(user.getEmail());
-        userDTO.setName(user.getName());
-        userDTO.setPassword(user.getPassword());
-        userDTO.setUserId(user.getUserId());
-
-        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
-        System.out.println(userDetails);
-        String token = this.jwtUtils.generateToken(userDetails);
-
+        userRepository.save(user);  // Ensure user is saved before fetching
+        // Fetch from database again
+        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+        String token = jwtUtils.getOrGenerateToken(userDetails);
         JWTResponse response = new JWTResponse();
         response.setJwtToken(token);
-        response.setUserId(user.getUserId());
-
         return ResponseEntity.ok(response);
     }
 }

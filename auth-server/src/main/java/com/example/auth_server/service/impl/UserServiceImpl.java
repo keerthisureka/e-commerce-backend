@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public List<User> getAll() {
-        return userRepository.findAll();
+    public User getUserDetails(String userId) {
+        return userRepository.findById(userId).get();
     }
 
     public User createUser(UserDTO userDTO) {
@@ -35,17 +35,5 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDTO.getEmail());
         user.setUserId(UUID.randomUUID().toString());
         return userRepository.save(user);
-    }
-
-    public String getEmailByUserId(String userId) {
-        User user = userRepository.findById(userId).get();
-        return user.getEmail();
-    }
-
-    public UserDTO getUserDetails(String userId) {
-        User user = userRepository.findById(userId).get();
-        UserDTO userDTO = new UserDTO();
-        BeanUtils.copyProperties(user, userDTO);
-        return userDTO;
     }
 }

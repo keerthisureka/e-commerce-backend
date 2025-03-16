@@ -3,6 +3,7 @@ package com.example.auth_server.Controllers;
 import com.example.auth_server.dto.UserDTO;
 import com.example.auth_server.entity.User;
 import com.example.auth_server.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,19 +18,22 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user")
-    public List<User> getUser() {
-        System.out.println("getting user");
-        return this.userService.getAll();
-    }
+//    @GetMapping("/user")
+//    public List<User> getUser() {
+//        System.out.println("getting user");
+//        return this.userService.getAll();
+//    }
+//
+//    @GetMapping("/getEmailByUserId/{userId}")
+//    public String getEmailByUserId(@PathVariable String userId) {
+//        return userService.getEmailByUserId(userId);
+//    }
 
-    @GetMapping("/getEmailByUserId/{userId}")
-    public String getEmailByUserId(@PathVariable String userId) {
-        return userService.getEmailByUserId(userId);
-    }
-
-    @GetMapping("/getUserDetails/{userId}")
-    public UserDTO getUserDetails(@PathVariable String userId) {
-        return userService.getUserDetails(userId);
+    @GetMapping("/getUserDetails")
+    public UserDTO getUserDetails(@RequestHeader("X-User-Id") String userId) {
+        User user = userService.getUserDetails(userId);
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(user, userDTO);
+        return userDTO;
     }
 }
