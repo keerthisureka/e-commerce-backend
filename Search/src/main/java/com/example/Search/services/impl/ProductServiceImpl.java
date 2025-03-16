@@ -27,6 +27,9 @@ public class ProductServiceImpl implements ProductService {
         query.setQuery("productName:*" + productName + "*");
         query.addFilterQuery("productMerchantStock:[1 TO *]");
 
+        // Increase the number of search results
+        query.setRows(50);
+
         // Add the custom score function to rank merchants
         String scoreFunction = "sum("
                 + "recip(productMerchantPrice,5,20,20),"
@@ -65,6 +68,9 @@ public class ProductServiceImpl implements ProductService {
         query.setQuery("*:*");
         query.addFilterQuery("productMerchantStock:[1 TO *]");
 
+        // Increase the number of search results
+        query.setRows(100);
+
         // Add the custom score function to rank merchants
         String scoreFunction = "sum("
                 + "recip(productMerchantPrice,5,20,20),"
@@ -95,6 +101,9 @@ public class ProductServiceImpl implements ProductService {
         SolrQuery query = new SolrQuery();
         query.setQuery("productId:" + productId);
         query.addFilterQuery("productMerchantStock:[1 TO *]");
+
+        // Increase the number of search results
+        query.setRows(50);
 
         // Add the custom score function to rank merchants
         String scoreFunction = "sum("
