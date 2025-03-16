@@ -72,6 +72,7 @@ public class OrderServiceImpl implements OrderServices {
 
             try{
                 String userEmail = userServiceClients.getEmailByUserId(userId);
+                System.out.println(userEmail);
                 emailService.sendOrderConfirmation(userEmail, ordersHistory.getId());
             } catch (Exception e) {
                 log.info(e.getMessage());

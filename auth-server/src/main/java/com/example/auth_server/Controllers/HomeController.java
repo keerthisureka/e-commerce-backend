@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:8090", allowCredentials = "true")
 @RestController
 @RequestMapping("/home")
 public class HomeController {
@@ -24,10 +24,11 @@ public class HomeController {
 //        return this.userService.getAll();
 //    }
 //
-//    @GetMapping("/getEmailByUserId/{userId}")
-//    public String getEmailByUserId(@PathVariable String userId) {
-//        return userService.getEmailByUserId(userId);
-//    }
+    @GetMapping("/getEmailByUserId")
+    public String getEmailByUserId(@RequestHeader("X-User-Id") String userId) {
+        System.out.println(userId);
+        return userService.getEmailByUserId(userId);
+    }
 
     @GetMapping("/getUserDetails")
     public UserDTO getUserDetails(@RequestHeader("X-User-Id") String userId) {

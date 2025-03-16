@@ -56,14 +56,10 @@ public class CartServiceImpl implements CartService {
             Cart cart = cartRepository.findByUserId(userId).orElse(new Cart());
             cart.setUserId(userId);
 
-            log.info("User with id {} found cart", userId);
-
             List<CartItem> currentCartItems = cart.getItems();
             if (currentCartItems == null) {
                 currentCartItems = new ArrayList<>();
             }
-
-            log.info("Cart Item list is accessed");
 
             // Check if the item is already in the cart
             CartItem existingItem = currentCartItems.stream()

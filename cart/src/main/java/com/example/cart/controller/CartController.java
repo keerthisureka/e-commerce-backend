@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Cart")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:8090", allowCredentials = "true")
 public class CartController {
 
     @Autowired

@@ -28,12 +28,15 @@ public class UserServiceImpl implements UserService {
     }
 
     public User createUser(UserDTO userDTO) {
-        System.out.println(userDTO);
         User user = new User();
         user.setName(userDTO.getName());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setEmail(userDTO.getEmail());
         user.setUserId(UUID.randomUUID().toString());
         return userRepository.save(user);
+    }
+
+    public String getEmailByUserId(String userId) {
+        return userRepository.findById(userId).get().getEmail();
     }
 }
